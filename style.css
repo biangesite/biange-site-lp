@@ -4,37 +4,32 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* レイアウト崩れを防ぐ基本設定 */
-    font-family: sans-serif; /* 仮のフォント設定 */
-    color: #fff; /* テキストの色を白に統一 (背景の上に表示するため) */
+    box-sizing: border-box; 
+    font-family: sans-serif;
+    color: #fff;
 }
 
+/* ❗リロード時のスクロール位置記憶を無効化 */
 html {
-    scroll-behavior: smooth; /* メニュークリック時のスクロールを滑らかに */
+    scroll-behavior: smooth;
 }
 
 /* ==========================================================
- * 2. 背景ビジュアルレイヤー (#background-visual) - 最重要！
+ * 2. 背景ビジュアルレイヤー (#background-visual)
  * ========================================================== */
 #background-visual {
-    /* 画面全体に固定し、スクロールしても動かないようにする */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    /* z-indexを-1にし、すべてのコンテンツの最背面に配置する */
     z-index: -1; 
     
-    /* 仮の背景画像を設定（今回は静止画でテスト） */
-    background-image: url('./images/erhu_key_visual.jpg'); /* * ❗注意: この画像ファイル名でimagesフォルダに静止画を用意してください
-                                                          * （ファイルがなければ背景は単色表示になります）
-                                                          */
-    background-size: cover; /* 画面全体を覆うように拡大縮小 */
+    background-image: url('./images/erhu_key_visual.jpg');
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     
-    /* 背景がコンテンツと干渉しないよう、わずかに暗くするオーバーレイ */
     filter: brightness(0.7); 
 }
 
@@ -42,35 +37,45 @@ html {
  * 3. コンテンツレイヤー (#content-wrapper)
  * ========================================================== */
 #content-wrapper {
-    /* 背景(-1)より前面にコンテンツを配置するためにposition: relativeを設定 */
     position: relative; 
-    z-index: 1; /* 明示的に前面であることを保証 */
+    z-index: 1;
 }
 
 /* ==========================================================
- * 4. ヘッダー (メニュー) の設定
+ * 4. ヘッダー (メニュー) の設定 (PC/共通)
  * ========================================================== */
 header {
-    position: fixed; /* 画面上部に固定 */
+    position: fixed;
     top: 0;
     width: 100%;
     padding: 20px 50px;
-    text-align: center;
-    z-index: 100; /* 最前面に表示 */
-    background-color: rgba(0, 0, 0, 0.4); /* 透過背景 */
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header ul {
+/* ロゴテキストのスタイル */
+#header-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e0b466;
+    text-decoration: none;
+}
+
+/* PC用ナビゲーション */
+header nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
 }
 
-header li {
+header nav li {
     margin: 0 15px;
 }
 
-header a {
+header nav a {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
@@ -78,8 +83,13 @@ header a {
     transition: color 0.3s;
 }
 
-header a:hover {
-    color: #e0b466; /* 二胡の音色をイメージした金色 */
+header nav a:hover {
+    color: #e0b466; 
+}
+
+/* モバイル用トグルボタンはPCでは非表示 */
+#nav-toggle {
+    display: none; 
 }
 
 /* ==========================================================
@@ -87,8 +97,8 @@ header a:hover {
  * ========================================================== */
 .content-section {
     padding: 100px 50px;
-    min-height: 50vh; /* 各セクションに最低限の高さを確保 */
-    background-color: rgba(0, 0, 0, 0.7); /* コンテンツエリアの透過背景 */
+    min-height: 50vh; 
+    background-color: rgba(0, 0, 0, 0.7);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -105,7 +115,7 @@ header a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 100px; /* メニューの高さ分を調整 */
+    padding-top: 100px; 
 }
 
 .key-title {
@@ -116,7 +126,7 @@ header a:hover {
 }
 
 /* ==========================================================
- * 6. オーバーレイ情報 (サイドNEWSとLIVE) の仮設定
+ * 6. オーバーレイ情報 (サイドNEWSとLIVE)
  * ========================================================== */
 
 /* 直近のお知らせ（画面サイド固定） */
@@ -124,23 +134,184 @@ header a:hover {
     position: fixed;
     right: 0;
     top: 50%;
-    transform: translateY(-50%) rotate(90deg); /* 縦に表示 */
+    transform: translateY(-50%) rotate(90deg);
     padding: 10px 20px;
     background-color: rgba(100, 100, 100, 0.5);
     z-index: 90;
-    white-space: nowrap; /* テキストを折り返さない */
-    transform-origin: 100% 0; /* 右端を基点に回転 */
+    white-space: nowrap;
+    transform-origin: 100% 0;
 }
 
-/* 直近のLIVE情報（画面下部透過表示） */
+/* 直近のLIVE情報（画面下部トリガー）の修正 */
 #live-info-overlay {
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     padding: 15px;
-    /* 要件の透明度10%程度のオーバーレイを実現 */
     background-color: rgba(255, 255, 255, 0.1); 
     z-index: 95;
     font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#live-info-overlay:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+/* ==========================================================
+ * 7. ライブ詳細モーダル (画面下部25%表示)
+ * ========================================================== */
+#live-detail-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh; 
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 200;
+    overflow-y: auto;
+    
+    /* モーダル表示状態のスタイル */
+    transition: transform 0.4s ease-out;
+}
+
+/* モーダルのコンテンツエリア */
+.modal-content {
+    width: 90%;
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.live-flyer {
+    max-width: 100%;
+    height: auto;
+    max-height: 100px;
+    border: 1px solid #e0b466;
+    margin: 10px 0;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #e0b466;
+}
+
+/* ❗モーダル非表示クラスを追加 */
+.modal-hidden {
+    transform: translateY(100%);
+}
+
+
+/* ==========================================================
+ * 8. レスポンシブ対応 (Media Query: スマートフォン・タブレット)
+ * 画面幅が768px以下の場合に適用
+ * ========================================================== */
+@media screen and (max-width: 768px) {
+
+    /* --- 8.1. ヘッダーとハンバーガーメニュー --- */
+    header {
+        padding: 10px 20px;
+        justify-content: space-between;
+    }
+    
+    /* モバイル時のロゴ調整 */
+    #header-logo {
+        font-size: 20px;
+    }
+
+    /* PC用ナビゲーションをモバイルでは非表示に */
+    header nav {
+        display: none; 
+    }
+
+    /* モバイル用ナビゲーションのスタイル（非表示状態） */
+    header nav#main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.98); 
+        padding-top: 60px;
+        z-index: 99;
+        /* 初期は非表示 */
+        display: none; 
+    }
+
+    /* JavaScriptで付与する表示クラス */
+    header nav#main-nav.nav-visible {
+        display: block; 
+    }
+
+    header nav ul {
+        flex-direction: column; 
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    header nav li {
+        margin: 20px 0;
+    }
+
+    header nav a {
+        font-size: 24px; 
+        padding: 10px 0;
+    }
+
+    /* モバイル用トグルボタンを表示 */
+    #nav-toggle {
+        display: block;
+        position: relative;
+        font-size: 30px;
+        background: none;
+        border: none;
+        color: #e0b466;
+        z-index: 101; 
+        cursor: pointer;
+        padding: 0;
+    }
+
+    /* --- 8.2. セクションとタイトル --- */
+    .content-section {
+        padding: 80px 20px; 
+    }
+    
+    .content-section h2 {
+        font-size: 28px;
+    }
+    
+    .full-height-section {
+        padding-top: 60px;
+    }
+
+    .key-title {
+        font-size: 40px; 
+    }
+
+    /* --- 8.3. オーバーレイとモーダル --- */
+
+    /* サイドNEWSを画面下に移動 */
+    #side-news-overlay {
+        position: relative; 
+        transform: none; 
+        width: 100%;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* LIVEモーダルを少し高く */
+    #live-detail-modal {
+        height: 35vh; 
+    }
 }

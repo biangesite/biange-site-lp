@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>【二胡演奏家】（演奏家名）オフィシャルサイト</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -14,52 +15,48 @@
     <div id="content-wrapper">
 
         <header>
-            <nav>
+            <div id="header-logo" data-aos="fade-down">Biange</div> <button id="nav-toggle" onclick="toggleNav()">≡</button>
+
+            <nav id="main-nav">
                 <ul>
-                    <li><a href="#top">TOP</a></li>
-                    <li><a href="#news">NEWS</a></li>
-                    <li><a href="#live">LIVE</a></li>
-                    <li><a href="#lesson">LESSON</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                    <li><a href="#other">OTHER</a></li>
+                    <li><a href="#top" onclick="closeNav()">TOP</a></li>
+                    <li><a href="#news" onclick="closeNav()">NEWS</a></li>
+                    <li><a href="#live" onclick="closeNav()">LIVE</a></li>
+                    <li><a href="#lesson" onclick="closeNav()">LESSON</a></li>
+                    <li><a href="#contact" onclick="closeNav()">CONTACT</a></li>
+                    <li><a href="#other" onclick="closeNav()">OTHER</a></li>
                 </ul>
             </nav>
         </header>
 
         <section id="top" class="full-height-section">
-            <h1 class="key-title">
-                心に響く二胡の調べ
+            <h1 class="key-title" data-aos="fade-up" data-aos-duration="2000"> 心に響く二胡の調べ
                 <br>
                 （演奏家名）
             </h1>
         </section>
 
-        <section id="news" class="content-section">
-            <h2>LATEST NEWS</h2>
+        <section id="news" class="content-section" data-aos="fade-up"> <h2>LATEST NEWS</h2>
             <div id="news-list">
                 <p>現在、新しいお知らせはありません。</p>
             </div>
         </section>
 
-        <section id="live" class="content-section">
-            <h2>LIVE SCHEDULE</h2>
+        <section id="live" class="content-section" data-aos="fade-up"> <h2>LIVE SCHEDULE</h2>
             <div id="live-schedule">
                 <p>次回の公演情報は近日公開予定です。</p>
             </div>
         </section>
 
-        <section id="lesson" class="content-section">
-            <h2>LESSON / WORKSHOP</h2>
+        <section id="lesson" class="content-section" data-aos="fade-up"> <h2>LESSON / WORKSHOP</h2>
             <p>レッスン情報が入ります。</p>
         </section>
 
-        <section id="contact" class="content-section">
-            <h2>CONTACT</h2>
+        <section id="contact" class="content-section" data-aos="fade-up"> <h2>CONTACT</h2>
             <p>ご質問、お仕事のご依頼はこちらから。</p>
         </section>
 
-        <section id="other" class="content-section">
-            <h2>OTHER CONTENTS</h2>
+        <section id="other" class="content-section" data-aos="fade-up"> <h2>OTHER CONTENTS</h2>
             <p>SNSやプロフィールなどが入ります。</p>
         </section>
 
@@ -67,10 +64,20 @@
             <p>最新情報: 2025.10.08 - サイト骨格作成開始</p>
         </div>
 
-        <div id="live-info-overlay">
-            <p>直近のライブ情報オーバーレイ</p>
+        <div id="live-info-overlay" onclick="toggleLiveModal()">
+            <p>直近のライブ情報オーバーレイ（クリックで詳細表示）</p>
         </div>
 
-    </div> <script src="script.js"></script>
+        <div id="live-detail-modal"> 
+            <div class="modal-content">
+                <button class="modal-close" onclick="toggleLiveModal()">×</button>
+                <h3>🌟 直近のライブ情報 🌟</h3>
+                <img src="./images/live_flyer_temp.jpg" alt="ライブフライヤー" class="live-flyer">
+                <p>※このエリアは、将来的に MicroCMS のコンテンツが表示されます。</p>
+            </div>
+        </div>
+
+    </div> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
