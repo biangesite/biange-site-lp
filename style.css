@@ -1,0 +1,146 @@
+/* ==========================================================
+ * 1. 基本リセットと全体設定
+ * ========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* レイアウト崩れを防ぐ基本設定 */
+    font-family: sans-serif; /* 仮のフォント設定 */
+    color: #fff; /* テキストの色を白に統一 (背景の上に表示するため) */
+}
+
+html {
+    scroll-behavior: smooth; /* メニュークリック時のスクロールを滑らかに */
+}
+
+/* ==========================================================
+ * 2. 背景ビジュアルレイヤー (#background-visual) - 最重要！
+ * ========================================================== */
+#background-visual {
+    /* 画面全体に固定し、スクロールしても動かないようにする */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    /* z-indexを-1にし、すべてのコンテンツの最背面に配置する */
+    z-index: -1; 
+    
+    /* 仮の背景画像を設定（今回は静止画でテスト） */
+    background-image: url('./images/erhu_key_visual.jpg'); /* * ❗注意: この画像ファイル名でimagesフォルダに静止画を用意してください
+                                                          * （ファイルがなければ背景は単色表示になります）
+                                                          */
+    background-size: cover; /* 画面全体を覆うように拡大縮小 */
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    /* 背景がコンテンツと干渉しないよう、わずかに暗くするオーバーレイ */
+    filter: brightness(0.7); 
+}
+
+/* ==========================================================
+ * 3. コンテンツレイヤー (#content-wrapper)
+ * ========================================================== */
+#content-wrapper {
+    /* 背景(-1)より前面にコンテンツを配置するためにposition: relativeを設定 */
+    position: relative; 
+    z-index: 1; /* 明示的に前面であることを保証 */
+}
+
+/* ==========================================================
+ * 4. ヘッダー (メニュー) の設定
+ * ========================================================== */
+header {
+    position: fixed; /* 画面上部に固定 */
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    text-align: center;
+    z-index: 100; /* 最前面に表示 */
+    background-color: rgba(0, 0, 0, 0.4); /* 透過背景 */
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+header li {
+    margin: 0 15px;
+}
+
+header a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: #e0b466; /* 二胡の音色をイメージした金色 */
+}
+
+/* ==========================================================
+ * 5. セクションの共通設定とTOPセクション
+ * ========================================================== */
+.content-section {
+    padding: 100px 50px;
+    min-height: 50vh; /* 各セクションに最低限の高さを確保 */
+    background-color: rgba(0, 0, 0, 0.7); /* コンテンツエリアの透過背景 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content-section h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #e0b466;
+}
+
+/* TOPセクション (画面いっぱいに表示) */
+.full-height-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* メニューの高さ分を調整 */
+}
+
+.key-title {
+    font-size: 60px;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================
+ * 6. オーバーレイ情報 (サイドNEWSとLIVE) の仮設定
+ * ========================================================== */
+
+/* 直近のお知らせ（画面サイド固定） */
+#side-news-overlay {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg); /* 縦に表示 */
+    padding: 10px 20px;
+    background-color: rgba(100, 100, 100, 0.5);
+    z-index: 90;
+    white-space: nowrap; /* テキストを折り返さない */
+    transform-origin: 100% 0; /* 右端を基点に回転 */
+}
+
+/* 直近のLIVE情報（画面下部透過表示） */
+#live-info-overlay {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    /* 要件の透明度10%程度のオーバーレイを実現 */
+    background-color: rgba(255, 255, 255, 0.1); 
+    z-index: 95;
+    font-size: 14px;
+}
