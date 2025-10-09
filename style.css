@@ -5,12 +5,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    font-family: sans-serif;
+    /* 全体フォントをゴシック体（Noto Sans JP）に戻す */
+    font-family: 'Noto Sans JP', sans-serif; 
     color: #fff;
+    /* フォントの長体化を防止 */
+    font-feature-settings: "palt";
 }
 
-/* ❗リロード時のスクロール位置記憶を無効化 */
 html {
+    scroll-behavior: smooth;
+}
+body {
     scroll-behavior: smooth;
 }
 
@@ -21,7 +26,7 @@ html {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; 
     height: 100vh;
     z-index: -1; 
     
@@ -39,6 +44,8 @@ html {
 #content-wrapper {
     position: relative; 
     z-index: 1;
+    min-height: 100vh; 
+    display: block;
 }
 
 /* ==========================================================
@@ -49,7 +56,7 @@ header {
     top: 0;
     width: 100%;
     padding: 20px 50px;
-    z-index: 100;
+    z-index: 150; 
     background-color: rgba(0, 0, 0, 0.4); 
     display: flex;
     justify-content: space-between;
@@ -59,9 +66,9 @@ header {
 /* ロゴテキストのスタイル */
 #header-logo {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700; 
     color: #e0b466;
-    text-decoration: none;
+    letter-spacing: 0.1em;
 }
 
 /* PC用ナビゲーション */
@@ -78,7 +85,7 @@ header nav li {
 header nav a {
     text-decoration: none;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500; 
     padding: 5px 10px;
     transition: color 0.3s;
 }
@@ -107,6 +114,12 @@ header nav a:hover {
     text-align: center;
     margin-bottom: 40px;
     color: #e0b466;
+    font-weight: 700;
+}
+/* セクション内のPタグを中央揃えに */
+.content-section p {
+    text-align: center;
+    line-height: 1.6;
 }
 
 /* TOPセクション (画面いっぱいに表示) */
@@ -118,12 +131,133 @@ header nav a:hover {
     padding-top: 100px; 
 }
 
+/* キータイトル */
 .key-title {
     font-size: 60px;
     text-align: center;
     line-height: 1.3;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+    color: rgba(255, 255, 255, 0.8); /* 透明度設定 */
 }
+
+/* 演奏家名 (明朝体 Bold - ここだけは明朝体を維持) */
+.key-title .artist-name {
+    display: block;
+    font-size: 36px;
+    margin-top: 10px;
+    color: #e0b466;
+    letter-spacing: 0.2em;
+    font-family: 'Noto Serif JP', serif; 
+    font-weight: 700; 
+}
+
+/* ニュース・ライブコンテンツのスタイル */
+.live-schedule-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.live-event {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 700px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    /* フライヤー画像とコンテンツを横並びにする設定 */
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    text-align: left; /* ブロック内のテキストは左寄せ */
+}
+.live-event-image {
+    flex-shrink: 0;
+    width: 150px;
+}
+.live-event-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #e0b466;
+}
+.live-event-content {
+    flex-grow: 1;
+}
+.live-event-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 700;
+    text-align: left;
+}
+.live-event-content p {
+    margin: 5px 0;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.future-note {
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* CONTACTセクションのレイアウト修正 */
+.contact-form-skeleton {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto; /* フォーム全体を中央揃え */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.contact-form-skeleton label {
+    text-align: left; /* ラベルを左揃えに戻す */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+/* フォームの新しいセレクト要素にもスタイル適用 */
+.contact-form-skeleton input[type="text"],
+.contact-form-skeleton input[type="email"],
+.contact-form-skeleton textarea,
+.contact-form-skeleton select {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #e0b466;
+    color: #fff;
+}
+/* セレクトボックスの矢印の色を白にするため、optionの背景色も設定 */
+.contact-form-skeleton select option {
+    background: #111;
+    color: #fff;
+}
+
+/* 返信遅延に関する注意書きのスタイル */
+.contact-form-skeleton .response-note {
+    font-size: 12px;
+    color: #aaa;
+    text-align: left;
+    margin-top: 15px;
+}
+
+
+/* 送信ボタンの有効スタイル */
+.contact-form-skeleton button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e0b466;
+    color: #000;
+    border: none;
+    cursor: pointer; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.contact-form-skeleton button:hover {
+    background-color: #c99a4c; 
+}
+
 
 /* ==========================================================
  * 6. オーバーレイ情報 (サイドNEWSとLIVE)
@@ -134,12 +268,19 @@ header nav a:hover {
     position: fixed;
     right: 0;
     top: 50%;
-    transform: translateY(-50%) rotate(90deg);
     padding: 10px 20px;
     background-color: rgba(100, 100, 100, 0.5);
-    z-index: 90;
+    z-index: 90; 
     white-space: nowrap;
+    
+    /* 重なり解消の最終調整 */
     transform-origin: 100% 0;
+    transform: translateY(-50%) rotate(90deg) translateX(65px); 
+    
+    font-weight: bold;
+}
+#side-news-overlay p {
+    text-align: center;
 }
 
 /* 直近のLIVE情報（画面下部トリガー）の修正 */
@@ -161,145 +302,571 @@ header nav a:hover {
 }
 
 /* ==========================================================
- * 7. ライブ詳細モーダル (画面下部25%表示)
+ * 7. ライブ詳細モーダル (画面下部帯状表示)
  * ========================================================== */
+
 #live-detail-modal {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 25vh; 
-    background-color: rgba(0, 0, 0, 0.95);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); 
     z-index: 200;
-    overflow-y: auto;
-    
-    /* モーダル表示状態のスタイル */
-    transition: transform 0.4s ease-out;
+    opacity: 0; 
+    pointer-events: none; 
+    transition: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
 }
 
-/* モーダルのコンテンツエリア */
+/* JSでモーダルを開く時（modal-hiddenクラスを削除した時）にtransitionを有効にする */
+#live-detail-modal:not(.modal-hidden) {
+    transition: opacity 0.4s ease-out; 
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* モーダル非表示クラス */
+.modal-hidden {
+    opacity: 0 !important; 
+    pointer-events: none !important;
+}
+
+/* 帯状モーダルのコンテンツエリア */
 .modal-content {
-    width: 90%;
-    max-width: 800px;
-    margin: 10px auto;
-    padding: 20px;
+    width: 100%; 
+    max-width: none;
+    
+    padding: 20px 50px; 
     text-align: center;
-}
-
-.live-flyer {
-    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
     height: auto;
-    max-height: 100px;
-    border: 1px solid #e0b466;
-    margin: 10px 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    /* 中央揃えを強制 */
+    display: flex;
+    justify-content: center;
 }
 
+/* モーダル閉じるボタンの修正 */
 .modal-close {
     position: absolute;
     top: 10px;
-    right: 20px;
-    font-size: 30px;
-    background: none;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: transparent; /* 背景を透明にする */
     border: none;
+    font-size: 30px;
+    color: #fff;
     cursor: pointer;
-    color: #e0b466;
+    z-index: 10;
+    align-self: flex-start; 
 }
 
-/* ❗モーダル非表示クラスを追加 */
-.modal-hidden {
-    transform: translateY(100%);
+/* ライブ情報カードデザイン（モーダル内） */
+.modal-event-card {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto; 
+    gap: 30px;
+    align-items: center;
+    padding: 10px;
+    border: none; 
+    background-color: transparent;
 }
+.modal-event-image-box {
+    flex-shrink: 0;
+    width: 120px;
+}
+.live-flyer {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #e0b466;
+}
+
+/* ==========================================================
+ * 9. フッター
+ * ========================================================== */
+footer {
+    padding: 60px 20px; /* 天地幅はご要望の通り60pxを維持 */
+    text-align: center;
+    background-color: #000;
+    font-size: 12px;
+}
+
+/* ==========================================================
+ * 11. フォームステータス表示 (C)
+ * ========================================================== */
+.form-status-skeleton {
+    max-width: 500px;
+    margin: 20px auto 0;
+    padding: 15px;
+    border: 1px solid #e0b466;
+    background-color: rgba(224, 180, 102, 0.1);
+    text-align: center;
+    min-height: 50px; /* メッセージ表示のための最低限の高さ */
+}
+
+/* ==========================================================
+ * 12. NEWSセクションのアコーディオン機能 (D)
+ * ========================================================== */
+
+/* 個別のアコーディオンコンテナ */
+.news-accordion {
+    max-width: 600px;
+    margin: 10px auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ヘッダー（クリック可能部分）のスタイル */
+.news-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ニュースアイテムのテキスト（左寄せに戻す） */
+.news-item {
+    text-align: left !important;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* 開閉アイコンのスタイル */
+.accordion-icon {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e0b466;
+    transition: transform 0.3s;
+    margin-left: 10px;
+}
+
+/* アイコンが回転して閉じている状態 (JSで.openが追加される) */
+.news-accordion.open .accordion-icon {
+    transform: rotate(45deg); /* "+"を"x"のように見せる */
+}
+
+/* 詳細コンテンツの初期状態（非表示） */
+.news-item-detail {
+    max-height: 0; /* 高さ0で非表示 */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 20px; /* パディングを0にする */
+}
+
+/* 開いた状態 */
+.news-accordion.open .news-item-detail {
+    max-height: 300px; /* コンテンツの高さ以上の適当な値を設定 */
+    padding: 15px 20px; 
+    border-top: none;
+}
+
+/* 詳細コンテンツ内のテキストを左寄せに戻す */
+.news-item-detail p {
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* ==========================================================
+ * 13. LESSONセクションのスタイル (リッチ化)
+ * ========================================================== */
+
+.lesson-intro, .lesson-intro-sub {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 16px;
+}
+.lesson-intro {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e0b466;
+    margin-bottom: 5px;
+}
+
+/* インフォメーションカードのコンテナ */
+.info-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+.info-card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #e0b466;
+    background-color: rgba(224, 180, 102, 0.05);
+    text-align: center;
+}
+.info-card h3 {
+    font-size: 20px;
+    color: #e0b466;
+    margin-bottom: 10px;
+}
+.info-card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* 料金表のコンテナ */
+.price-table-container {
+    max-width: 700px;
+    margin: 30px auto 50px;
+}
+.price-table-container h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #fff;
+}
+.price-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+.price-table-container th, .price-table-container td {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-size: 15px;
+}
+.price-table-container th {
+    background-color: rgba(224, 180, 102, 0.3);
+    color: #fff;
+    font-weight: bold;
+}
+.price-table-container td {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 詳細情報アコーディオン（NEWSセクションのスタイルを流用しつつ調整） */
+.lesson-details-container {
+    max-width: 600px;
+    margin: 20px auto 40px;
+}
+
+.lesson-details-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.lesson-details-container .news-accordion {
+    border-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 5px;
+}
+
+.lesson-details-container .news-item-header {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.lesson-details-container .news-item {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* 詳細コンテンツ内の特殊スタイル */
+.lesson-details-container .detail-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e0b466;
+    text-align: center !important;
+}
+.lesson-details-container .detail-policy, .detail-note {
+    font-size: 14px;
+    text-align: left !important;
+}
+.lesson-details-container h4 {
+    color: #e0b466;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left !important;
+    font-weight: bold;
+}
+.lesson-details-container .mt-15 {
+    margin-top: 15px;
+}
+
+/* お問い合わせ情報 */
+.lesson-contact-info {
+    text-align: center;
+    margin-top: 50px;
+}
+.lesson-contact-info h3 {
+    font-size: 24px;
+    color: #e0b466;
+    margin-bottom: 10px;
+}
+.lesson-contact-info p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.lesson-contact-info a {
+    color: #e0b466;
+    text-decoration: underline;
+}
+.lesson-contact-info a:hover {
+    color: #fff;
+}
+
+/* ==========================================================
+ * 14. PROFILEセクションのスタイル
+ * ========================================================== */
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.profile-container h3 {
+    text-align: left;
+    color: #e0b466;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+}
+.profile-container p.profile-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.profile-container p.profile-quote {
+    font-size: 16px;
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* 経歴ハイライトボックスのコンテナ */
+.bio-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* 4つを横に並べる */
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* 各ハイライトカード */
+.bio-card {
+    flex: 1 1 calc(50% - 10px); /* 2列表示を基本とする (幅50% - 隙間10px) */
+    max-width: calc(50% - 10px);
+    padding: 20px;
+    background-color: rgba(224, 180, 102, 0.1);
+    border-left: 5px solid #e0b466;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.bio-card h4 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.bio-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.bio-card .bio-year-label {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #e0b466;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+/* 受賞歴リスト */
+.award-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+.award-list li {
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 0;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+    margin-left: 20px;
+}
+.award-list li::before {
+    content: "★";
+    color: #e0b466;
+    margin-right: 10px;
+    font-size: 10px;
+}
+
+/* ソロ活動リスト */
+.solo-activity-list p {
+    text-align: left;
+    font-size: 14px;
+    padding: 4px 0;
+    max-width: 600px;
+    margin: 0 auto;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================
+ * 15. GALLERYセクションのスタイル (ジャスティファイ・レイアウト)
+ * ========================================================== */
+
+.gallery-intro-text {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 16px;
+}
+
+/* ❗NEW: ジャスティファイ・レイアウトのコンテナ設定 */
+.gallery-grid-container.justified-container {
+    /* Flexboxを使って画像を一行に並べる */
+    display: flex;
+    flex-wrap: wrap; /* 折り返しを有効にする */
+    justify-content: flex-start; /* 左寄せから開始 */
+    align-items: flex-start;
+    gap: 5px; /* 画像間のスキマ */
+    max-width: 1200px; /* PCでの最大幅 */
+    margin: 0 auto;
+    background-color: #000; /* 背景を黒にして、余白を目立たなくする */
+    padding: 5px 0;
+}
+
+.gallery-item {
+    overflow: hidden;
+    /* ジャスティファイ・レイアウトではflexアイテムとして動作 */
+    height: 250px; /* 基準となる行の高さ (JSで動的に変わる) */
+    flex-grow: 1; /* 行内で幅を拡大する設定 (JSでリセットされる) */
+    
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    position: relative;
+    cursor: pointer;
+    /* 縦横比を保つハックを削除 */
+    padding-top: 0; 
+}
+
+.gallery-item img {
+    /* ❗最重要: 画像の縦横比を維持し、アイテムの高さいっぱいに表示する */
+    height: 100%; 
+    width: auto; 
+    object-fit: cover; /* 画像が切れないよう、containでも良いが、今回はheight:100%とJSで調整するためcoverにする */
+    transition: filter 0.3s ease;
+    display: block; 
+}
+
+.gallery-item:hover img {
+    filter: brightness(1.1);
+}
+
+/* プレースホルダーはHTMLから削除を推奨しますが、CSSは残しません */
 
 
 /* ==========================================================
- * 8. レスポンシブ対応 (Media Query: スマートフォン・タブレット)
- * 画面幅が768px以下の場合に適用
+ * 10. レスポンシブ対応 (Media Query: スマートフォン・タブレット)
  * ========================================================== */
 @media screen and (max-width: 768px) {
-
-    /* --- 8.1. ヘッダーとハンバーガーメニュー --- */
+    /* --- 10.1. ヘッダーとハンバーガーメニュー --- */
     header {
         padding: 10px 20px;
-        justify-content: space-between;
     }
     
-    /* モバイル時のロゴ調整 */
-    #header-logo {
-        font-size: 20px;
-    }
-
-    /* PC用ナビゲーションをモバイルでは非表示に */
+    /* モバイルでのナビゲーションの表示/非表示 */
     header nav {
-        display: none; 
-    }
-
-    /* モバイル用ナビゲーションのスタイル（非表示状態） */
-    header nav#main-nav {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.98); 
-        padding-top: 60px;
-        z-index: 99;
-        /* 初期は非表示 */
-        display: none; 
-    }
-
-    /* JavaScriptで付与する表示クラス */
-    header nav#main-nav.nav-visible {
-        display: block; 
-    }
-
-    header nav ul {
-        flex-direction: column; 
+        background-color: rgba(0, 0, 0, 0.95);
+        display: none; /* 初期は非表示 */
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        margin-top: 50px;
+        z-index: 140; 
+        transition: opacity 0.3s;
     }
-
-    header nav li {
-        margin: 20px 0;
+    /* JSで付与されるクラス。ナビゲーションを表示する */
+    header nav.nav-visible {
+        display: flex; 
+        opacity: 1;
     }
-
-    header nav a {
-        font-size: 24px; 
-        padding: 10px 0;
-    }
-
-    /* モバイル用トグルボタンを表示 */
+    
     #nav-toggle {
-        display: block;
-        position: relative;
-        font-size: 30px;
+        display: block; 
         background: none;
         border: none;
         color: #e0b466;
-        z-index: 101; 
+        font-size: 30px;
         cursor: pointer;
-        padding: 0;
-    }
-
-    /* --- 8.2. セクションとタイトル --- */
-    .content-section {
-        padding: 80px 20px; 
+        z-index: 151; 
     }
     
-    .content-section h2 {
+    /* メニュー項目とリストのスタイル */
+    header nav ul {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav li {
+        margin: 10px 0;
+    }
+
+    header nav a {
+        font-size: 20px;
+        padding: 10px;
+        display: block;
+    }
+    
+    /* --- 10.2. セクションとTOP --- */
+    /* セクションパディングの調整 */
+    .content-section {
+        padding: 80px 20px;
+    }
+    .key-title {
+        font-size: 40px;
+    }
+    .key-title .artist-name {
         font-size: 28px;
     }
     
-    .full-height-section {
-        padding-top: 60px;
-    }
+    /* --- 10.3. オーバーレイとモーダル --- */
 
-    .key-title {
-        font-size: 40px; 
-    }
-
-    /* --- 8.3. オーバーレイとモーダル --- */
-
-    /* サイドNEWSを画面下に移動 */
+    /* サイドNEWS（モバイル時は横並びになるため位置をリセット） */
     #side-news-overlay {
         position: relative; 
         transform: none; 
@@ -308,10 +875,89 @@ header nav a:hover {
         padding: 5px 0;
         font-size: 12px;
         background-color: rgba(0, 0, 0, 0.7);
+        font-weight: normal;
+        z-index: auto; 
+        top: auto; /* PC時のオフセットをリセット */
+    }
+    
+    /* LIVEモーダル (帯状レイアウトのモバイル修正) */
+    .modal-event-card {
+        flex-direction: column; /* モバイルでは縦並び */
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+    .modal-event-image-box {
+        width: 60%;
+        max-width: 150px;
+    }
+    .modal-event-text h3, .modal-event-text p {
+        text-align: center; /* モバイルではテキストも中央揃え */
     }
 
-    /* LIVEモーダルを少し高く */
-    #live-detail-modal {
-        height: 35vh; 
+    /* LESSONセクション */
+    .info-cards-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .info-card {
+        padding: 15px;
+    }
+    .price-table-container th, .price-table-container td {
+        padding: 8px;
+        font-size: 13px;
+    }
+    .lesson-intro, .lesson-intro-sub {
+        font-size: 14px;
+    }
+    
+    /* PROFILEセクション */
+    .profile-container {
+        padding: 15px;
+    }
+    .profile-container h3 {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    /* 経歴ハイライトボックス（モバイル対応：1列） */
+    .bio-cards-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .bio-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding-right: 70px; /* 年号ラベルのためのスペース確保 */
+    }
+    .bio-card h4 {
+        font-size: 16px;
+    }
+    .bio-card p {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    .bio-card .bio-year-label {
+        font-size: 11px;
+    }
+    
+    .award-list {
+        margin-left: 0;
+        padding-left: 0;
+    }
+    .award-list li {
+        font-size: 13px;
+    }
+    .solo-activity-list p {
+        font-size: 13px;
+    }
+
+    /* GALLERYセクションのモバイル対応 */
+    .gallery-grid-container.justified-container {
+        gap: 3px;
+    }
+    .gallery-item {
+        /* モバイルでは基準高さを小さく */
+        height: 150px; 
     }
 }
