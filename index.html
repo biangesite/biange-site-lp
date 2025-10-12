@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
 </head>
 <body>
 
-    <div id="background-visual">
-    </div>
+    <div id="background-visual"></div>
 
     <div id="content-wrapper">
 
@@ -43,7 +43,7 @@
             <h2>LATEST NEWS</h2>
             <div id="news-list">
                 
-                <div class="news-accordion">
+                <div class="news-accordion" data-cms-id="news-001">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-1')">
                         <p class="news-item">2026.1.15　二胡教室「年明け新春ワークショップ」開催決定！</p>
                         <span class="accordion-icon">+</span>
@@ -57,9 +57,9 @@
                     </div>
                 </div>
 
-                <div class="news-accordion">
+                <div class="news-accordion" data-cms-id="news-002">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-2')">
-                        <p class="news-item">2025.10.7　BIAN GE BIRTHDAY LIVE 2025　JZ Brat SOUND OF TOKYO 公演終了</p>
+                        <p class="news-item">2025.10.7　BIAN GE BIRTHDAY LIVE 2025　JZ Brat SOUND OF TOKYO 　　公演終了</p>
                         <span class="accordion-icon">+</span>
                     </div>
                     <div id="news-detail-2" class="news-item-detail">
@@ -70,16 +70,16 @@
                     </div>
                 </div>
                 
-                <p class="future-note">※将来的に管理ツールでリッチテキストによる編集を可能にします。</p>
+                <p class="future-note">※将来的に管理ツールで編集を可能にします。</p>
             </div>
         </section>
 
         <section id="live" class="content-section" data-aos="fade-up">
             <h2>LIVE SCHEDULE</h2>
             <div id="live-schedule" class="live-schedule-list">
-                <div class="live-event">
+                <div class="live-event" data-cms-id="live-001">
                     <div class="live-event-image">
-                        <img src="./images/live_flyer_temp.jpg" alt="ライブフライヤー">
+                        <img src="./images/live_flyer1_front.jpg" alt="ライブフライヤー" onerror="this.src='./images/live_flyer1_temp.jpg'">
                     </div>
                     <div class="live-event-content">
                         <h3>2026.5.15　BIAN GE初夏の彩コンサート 開催決定</h3>
@@ -89,7 +89,7 @@
                         <p>演奏予定曲　異邦人　Top of the world　賽馬　別れの曲　ほか</p>
                     </div>
                 </div>
-                <p class="future-note">※将来的に管理ツールでリッチテキストによる編集を可能にします。</p>
+                <p class="future-note">※将来的に管理ツールで編集を可能にします。</p>
             </div>
         </section>
 
@@ -237,7 +237,6 @@
                     <p>12歳より二胡奏者の**呼延梅文先生**に師事。</p>
                 </div>
 
-
                 <h3>受賞歴</h3>
                 <ul class="award-list">
                     <li>1999年 西安音楽学院第九届中国器楽演奏優勝</li>
@@ -268,12 +267,12 @@
                 </div>
             </div>
             
-            <p class="future-note">※将来的に管理ツールでリッチテキストによる編集を可能にします。</p>
+            <p class="future-note">※将来的に管理ツールで編集を可能にします。</p>
         </section>
 
         <section id="contact" class="content-section" data-aos="fade-up">
             <h2>CONTACT</h2>
-            <p>ご質問、お仕事のご依頼はこちらから。</p>
+            <p class="contact-intro">ご質問、お仕事のご依頼はこちらから。</p>
 
             <form id="contact-form" class="contact-form-skeleton" onsubmit="handleFormSubmit(event)">
                 <label for="contact-type">お問い合わせ種別</label>
@@ -311,50 +310,87 @@
             </p>
 
             <div class="gallery-grid-container justified-container">
-                <div class="gallery-item"><img src="./images/gallery_portrait_001.jpg" alt="アーティスト写真1" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_002.jpg" alt="アーティスト写真2" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_003.jpg" alt="アーティスト写真3" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_004.jpg" alt="アーティスト写真4" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_005.jpg" alt="アーティスト写真5" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_006.jpg" alt="アーティスト写真6" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_007.jpg" alt="アーティスト写真7" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_008.jpg" alt="アーティスト写真8" loading="lazy"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_009.jpg" alt="アーティスト写真9" loading="lazy"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_001.jpg" alt="アーティスト写真1"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_002.jpg" alt="アーティスト写真2"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_003.jpg" alt="アーティスト写真3"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_004.jpg" alt="アーティスト写真4"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_005.jpg" alt="アーティスト写真5"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_006.jpg" alt="アーティスト写真6"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_007.jpg" alt="アーティスト写真7"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_008.jpg" alt="アーティスト写真8"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_009.jpg" alt="アーティスト写真9"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_010.jpg" alt="アーティスト写真10"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_011.jpg" alt="アーティスト写真11"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_012.jpg" alt="アーティスト写真12"></div>
+                <div class="gallery-item"><img src="./images/gallery_portrait_013.jpg" alt="アーティスト写真13"></div>
             </div>
             
             <p class="future-note">※画像をクリックで拡大表示する機能を将来的に追加予定</p>
         </section>
 
-
+        <!-- サイドNEWS告知オーバーレイ -->
         <div id="side-news-overlay">
             <p>NEW！！　BIAN GE初夏の彩コンサート 2026.5.15 開催決定</p>
         </div>
 
+        <!-- LIVE情報トリガー -->
         <div id="live-info-overlay" onclick="toggleLiveModal()">
-            <p>直近のライブ情報オーバーレイ（クリックで詳細表示）</p>
+            <p>次のライブイベント情報は　こちらをクリック</p>
         </div>
 
-        <div id="live-detail-modal" onclick="toggleLiveModal(event)"> 
-             <div class="modal-content live-card-modal" onclick="event.stopPropagation()"> 
-                <button class="modal-close" onclick="toggleLiveModal()">×</button>
-                
-                <div class="modal-event-card">
-                    <div class="modal-event-image-box">
-                         <img src="./images/live_flyer_temp.jpg" alt="ライブフライヤー" class="live-flyer">
-                    </div>
-                    <div class="modal-event-text">
-                        <h3>BIAN GE初夏の彩コンサート</h3>
-                        <p>日時：2026.5.15 (金) 18:30開演</p>
-                        <p>会場：すみだトリフォニー・小ホール</p>
-                        <a href="#live" onclick="toggleLiveModal()">
-                             <div class="reserve-button">チケット予約はこちら</div>
-                        </a>
-                    </div>
+        <!-- BGMコントロール -->
+        <div id="bgm-control-overlay">
+            <div id="bgm-track-info">
+                <span id="bgm-track-name">BGM未選択</span>
+            </div>
+            <div id="bgm-controls-row">
+                <button id="bgm-toggle" onclick="toggleBGM()" title="BGM ON/OFF">
+                    <span id="bgm-icon">🔇</span>
+                </button>
+                <div id="bgm-volume-container">
+                    <input type="range" id="bgm-volume" min="0" max="100" value="30" oninput="adjustVolume(this.value)">
+                    <span id="volume-percentage">30%</span>
                 </div>
             </div>
         </div>
 
-    </div> <footer>
+        <!-- BGMオーディオ要素 -->
+        <audio id="bgm-audio" loop preload="metadata">
+            <source src="./audio/background_music.mp3" type="audio/mpeg">
+            <source src="./audio/background_music.wav" type="audio/wav">
+        </audio>
+
+        <!-- LIVE詳細モーダル -->
+        <div id="live-detail-modal" onclick="toggleLiveModal(event)"> 
+             <div class="modal-content live-card-modal" onclick="event.stopPropagation()"> 
+                <button class="modal-close" onclick="toggleLiveModal()">×</button>
+                
+                <div class="modal-flyer-dual">
+                    <div class="flyer-side">
+                        <img src="./images/live_flyer1_temp.jpg" alt="ライブフライヤー 表面" class="live-flyer" onerror="this.src='./images/live_flyer1_temp.jpg'">
+                        <p class="flyer-caption">詳細１</p>
+                    </div>
+                    <div class="flyer-side">
+                        <img src="./images/live_flyer2_temp.jpg" alt="ライブフライヤー 裏面" class="live-flyer" onerror="this.src='./images/live_flyer2_temp.jpg'">
+                        <p class="flyer-caption">詳細２</p>
+                    </div>
+                </div>
+
+                <p class="future-note pdf-link-note">
+                    <a href="./live_flyer1_20260515.pdf" target="_blank">
+                        【A4フライヤー両面 PDF版】をダウンロード・閲覧する
+                    </a>
+                </p>
+
+                <a href="#live" onclick="toggleLiveModal()">
+                    <div class="reserve-button">チケット予約・詳細情報はこちら</div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
         <p>&copy; 2025 BIANGE Official Site. All Rights Reserved.</p>
     </footer>
 

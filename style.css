@@ -5,10 +5,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    /* 全体フォントをゴシック体（Noto Sans JP）に戻す */
     font-family: 'Noto Sans JP', sans-serif; 
     color: #fff;
-    /* フォントの長体化を防止 */
     font-feature-settings: "palt";
 }
 
@@ -17,6 +15,11 @@ html {
 }
 body {
     scroll-behavior: smooth;
+}
+
+/* スクロール禁止クラス（モーダル・メニュー表示時） */
+body.no-scroll {
+    overflow: hidden;
 }
 
 /* ==========================================================
@@ -63,7 +66,6 @@ header {
     align-items: center;
 }
 
-/* ロゴテキストのスタイル */
 #header-logo {
     font-size: 24px;
     font-weight: 700; 
@@ -71,7 +73,6 @@ header {
     letter-spacing: 0.1em;
 }
 
-/* PC用ナビゲーション */
 header nav ul {
     list-style: none;
     display: flex;
@@ -94,7 +95,6 @@ header nav a:hover {
     color: #e0b466; 
 }
 
-/* モバイル用トグルボタンはPCでは非表示 */
 #nav-toggle {
     display: none; 
 }
@@ -116,13 +116,12 @@ header nav a:hover {
     color: #e0b466;
     font-weight: 700;
 }
-/* セクション内のPタグを中央揃えに */
+
 .content-section p {
     text-align: center;
     line-height: 1.6;
 }
 
-/* TOPセクション (画面いっぱいに表示) */
 .full-height-section {
     min-height: 100vh;
     display: flex;
@@ -131,16 +130,14 @@ header nav a:hover {
     padding-top: 100px; 
 }
 
-/* キータイトル */
 .key-title {
     font-size: 60px;
     text-align: center;
     line-height: 1.3;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-    color: rgba(255, 255, 255, 0.8); /* 透明度設定 */
+    color: rgba(255, 255, 255, 0.8);
 }
 
-/* 演奏家名 (明朝体 Bold - ここだけは明朝体を維持) */
 .key-title .artist-name {
     display: block;
     font-size: 36px;
@@ -156,31 +153,35 @@ header nav a:hover {
     max-width: 900px;
     margin: 0 auto;
 }
+
 .live-event {
     margin: 30px auto;
     padding: 20px;
     max-width: 700px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background-color: rgba(255, 255, 255, 0.05);
-    /* フライヤー画像とコンテンツを横並びにする設定 */
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    text-align: left; /* ブロック内のテキストは左寄せ */
+    text-align: left;
 }
+
 .live-event-image {
     flex-shrink: 0;
     width: 150px;
 }
+
 .live-event-image img {
     width: 100%;
     height: auto;
     display: block;
     border: 1px solid #e0b466;
 }
+
 .live-event-content {
     flex-grow: 1;
 }
+
 .live-event-content h3 {
     font-size: 20px;
     margin-bottom: 10px;
@@ -188,6 +189,7 @@ header nav a:hover {
     font-weight: 700;
     text-align: left;
 }
+
 .live-event-content p {
     margin: 5px 0;
     line-height: 1.6;
@@ -201,23 +203,29 @@ header nav a:hover {
     margin-top: 20px;
 }
 
-/* CONTACTセクションのレイアウト修正 */
+/* CONTACTセクション */
+.contact-intro {
+    margin: 0 auto 30px;
+    max-width: 500px;
+}
+
 .contact-form-skeleton {
     display: flex;
     flex-direction: column;
     max-width: 500px;
-    margin: 0 auto; /* フォーム全体を中央揃え */
+    margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .contact-form-skeleton label {
-    text-align: left; /* ラベルを左揃えに戻す */
+    text-align: left;
     margin-top: 15px;
     margin-bottom: 5px;
     font-weight: bold;
 }
-/* フォームの新しいセレクト要素にもスタイル適用 */
+
 .contact-form-skeleton input[type="text"],
 .contact-form-skeleton input[type="email"],
 .contact-form-skeleton textarea,
@@ -228,13 +236,12 @@ header nav a:hover {
     border: 1px solid #e0b466;
     color: #fff;
 }
-/* セレクトボックスの矢印の色を白にするため、optionの背景色も設定 */
+
 .contact-form-skeleton select option {
     background: #111;
     color: #fff;
 }
 
-/* 返信遅延に関する注意書きのスタイル */
 .contact-form-skeleton .response-note {
     font-size: 12px;
     color: #aaa;
@@ -242,8 +249,6 @@ header nav a:hover {
     margin-top: 15px;
 }
 
-
-/* 送信ボタンの有効スタイル */
 .contact-form-skeleton button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -254,16 +259,21 @@ header nav a:hover {
     font-weight: bold;
     transition: background-color 0.3s;
 }
+
 .contact-form-skeleton button:hover {
     background-color: #c99a4c; 
 }
 
+.contact-form-skeleton button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
 
 /* ==========================================================
- * 6. オーバーレイ情報 (サイドNEWSとLIVE)
+ * 6. オーバーレイ情報 (サイドNEWS、LIVE、BGM)
  * ========================================================== */
 
-/* 直近のお知らせ（画面サイド固定） */
+/* サイドNEWS（画面右側固定） */
 #side-news-overlay {
     position: fixed;
     right: 0;
@@ -272,18 +282,16 @@ header nav a:hover {
     background-color: rgba(100, 100, 100, 0.5);
     z-index: 90; 
     white-space: nowrap;
-    
-    /* 重なり解消の最終調整 */
     transform-origin: 100% 0;
     transform: translateY(-50%) rotate(90deg) translateX(65px); 
-    
     font-weight: bold;
 }
+
 #side-news-overlay p {
     text-align: center;
 }
 
-/* 直近のLIVE情報（画面下部トリガー）の修正 */
+/* LIVE情報トリガー（画面下部固定） */
 #live-info-overlay {
     position: fixed;
     bottom: 0;
@@ -295,14 +303,159 @@ header nav a:hover {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s;
+    animation: pulseBackground 2s infinite alternate;
 }
 
 #live-info-overlay:hover {
     background-color: rgba(255, 255, 255, 0.2); 
+    animation-play-state: paused;
+}
+
+@keyframes pulseBackground {
+    0% {
+        background-color: rgba(224, 180, 102, 0.2);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* BGMコントロール（画面左下固定） */
+#bgm-control-overlay {
+    position: fixed;
+    left: 20px;
+    bottom: 80px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(224, 180, 102, 0.3);
+    transition: all 0.3s ease;
+    width: 240px;
+    box-sizing: border-box;
+}
+
+#bgm-control-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: rgba(224, 180, 102, 0.6);
+}
+
+/* BGMトラック情報表示 */
+#bgm-track-info {
+    width: 100%;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(224, 180, 102, 0.2);
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bgm-track-name {
+    font-size: 11px;
+    color: #e0b466;
+    display: block;
+    text-align: center;
+    line-height: 1.3;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* コントロール行 */
+#bgm-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+#bgm-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.2s;
+    color: #fff;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bgm-toggle:hover {
+    transform: scale(1.1);
+}
+
+#bgm-toggle:active {
+    transform: scale(0.95);
+}
+
+#bgm-volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+#bgm-volume {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 80px;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#bgm-volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #e0b466;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+#bgm-volume::-webkit-slider-thumb:hover {
+    background: #c99a4c;
+}
+
+#bgm-volume::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #e0b466;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    transition: background 0.2s;
+}
+
+#bgm-volume::-moz-range-thumb:hover {
+    background: #c99a4c;
+}
+
+#volume-percentage {
+    font-size: 11px;
+    color: #e0b466;
+    width: 32px;
+    text-align: right;
+    flex-shrink: 0;
 }
 
 /* ==========================================================
- * 7. ライブ詳細モーダル (画面下部帯状表示)
+ * 7. ライブ詳細モーダル
  * ========================================================== */
 
 #live-detail-modal {
@@ -321,25 +474,21 @@ header nav a:hover {
     align-items: flex-end; 
 }
 
-/* JSでモーダルを開く時（modal-hiddenクラスを削除した時）にtransitionを有効にする */
 #live-detail-modal:not(.modal-hidden) {
     transition: opacity 0.4s ease-out; 
     opacity: 1;
     pointer-events: auto;
 }
 
-/* モーダル非表示クラス */
 .modal-hidden {
     opacity: 0 !important; 
     pointer-events: none !important;
 }
 
-/* 帯状モーダルのコンテンツエリア */
 .modal-content {
     width: 100%; 
-    max-width: none;
-    
-    padding: 20px 50px; 
+    max-width: 900px;
+    padding: 20px 20px 40px; 
     text-align: center;
     background-color: rgba(0, 0, 0, 0.95);
     height: auto;
@@ -347,13 +496,11 @@ header nav a:hover {
     overflow-y: auto;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-
-    /* 中央揃えを強制 */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* モーダル閉じるボタンの修正 */
 .modal-close {
     position: absolute;
     top: 10px;
@@ -362,49 +509,85 @@ header nav a:hover {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    background-color: transparent; /* 背景を透明にする */
+    background-color: transparent;
     border: none;
     font-size: 30px;
     color: #fff;
     cursor: pointer;
     z-index: 10;
-    align-self: flex-start; 
+    align-self: flex-end; 
 }
 
-/* ライブ情報カードデザイン（モーダル内） */
-.modal-event-card {
+.modal-flyer-dual {
     display: flex;
-    max-width: 900px;
-    margin: 0 auto; 
     gap: 30px;
-    align-items: center;
-    padding: 10px;
-    border: none; 
-    background-color: transparent;
+    justify-content: center;
+    margin-bottom: 20px;
+    max-width: 800px;
+    width: 100%;
 }
-.modal-event-image-box {
-    flex-shrink: 0;
-    width: 120px;
+
+.flyer-side {
+    flex: 1;
+    text-align: center;
 }
-.live-flyer {
+
+.flyer-side .live-flyer {
     width: 100%;
     height: auto;
     display: block;
+    max-height: 400px;
+    object-fit: contain;
     border: 1px solid #e0b466;
+    margin-bottom: 10px;
+}
+
+.flyer-caption {
+    font-size: 12px;
+    color: #ccc;
+    margin: 0;
+}
+
+.reserve-button {
+    padding: 12px 25px;
+    background-color: #e0b466;
+    color: #000;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 4px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reserve-button:hover {
+    background-color: #c99a4c;
+}
+
+.pdf-link-note a {
+    color: #e0b466;
+    text-decoration: underline;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.pdf-link-note a:hover {
+    color: #fff;
 }
 
 /* ==========================================================
- * 9. フッター
+ * 8. フッター
  * ========================================================== */
 footer {
-    padding: 60px 20px; /* 天地幅はご要望の通り60pxを維持 */
+    padding: 60px 20px;
     text-align: center;
     background-color: #000;
     font-size: 12px;
 }
 
 /* ==========================================================
- * 11. フォームステータス表示 (C)
+ * 9. フォームステータス表示
  * ========================================================== */
 .form-status-skeleton {
     max-width: 500px;
@@ -413,14 +596,13 @@ footer {
     border: 1px solid #e0b466;
     background-color: rgba(224, 180, 102, 0.1);
     text-align: center;
-    min-height: 50px; /* メッセージ表示のための最低限の高さ */
+    min-height: 50px;
 }
 
 /* ==========================================================
- * 12. NEWSセクションのアコーディオン機能 (D)
+ * 10. NEWSセクションのアコーディオン機能
  * ========================================================== */
 
-/* 個別のアコーディオンコンテナ */
 .news-accordion {
     max-width: 600px;
     margin: 10px auto;
@@ -428,7 +610,6 @@ footer {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* ヘッダー（クリック可能部分）のスタイル */
 .news-item-header {
     display: flex;
     justify-content: space-between;
@@ -439,14 +620,12 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ニュースアイテムのテキスト（左寄せに戻す） */
 .news-item {
     text-align: left !important;
     margin: 0;
     line-height: 1.4;
 }
 
-/* 開閉アイコンのスタイル */
 .accordion-icon {
     font-size: 20px;
     font-weight: bold;
@@ -455,27 +634,23 @@ footer {
     margin-left: 10px;
 }
 
-/* アイコンが回転して閉じている状態 (JSで.openが追加される) */
 .news-accordion.open .accordion-icon {
-    transform: rotate(45deg); /* "+"を"x"のように見せる */
+    transform: rotate(45deg);
 }
 
-/* 詳細コンテンツの初期状態（非表示） */
 .news-item-detail {
-    max-height: 0; /* 高さ0で非表示 */
+    max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-    padding: 0 20px; /* パディングを0にする */
+    padding: 0 20px;
 }
 
-/* 開いた状態 */
 .news-accordion.open .news-item-detail {
-    max-height: 300px; /* コンテンツの高さ以上の適当な値を設定 */
+    max-height: 300px;
     padding: 15px 20px; 
     border-top: none;
 }
 
-/* 詳細コンテンツ内のテキストを左寄せに戻す */
 .news-item-detail p {
     text-align: left;
     margin-bottom: 5px;
@@ -483,7 +658,7 @@ footer {
 }
 
 /* ==========================================================
- * 13. LESSONセクションのスタイル (リッチ化)
+ * 11. LESSONセクションのスタイル
  * ========================================================== */
 
 .lesson-intro, .lesson-intro-sub {
@@ -491,6 +666,7 @@ footer {
     margin: 0 auto 20px;
     font-size: 16px;
 }
+
 .lesson-intro {
     font-size: 18px;
     font-weight: bold;
@@ -498,7 +674,6 @@ footer {
     margin-bottom: 5px;
 }
 
-/* インフォメーションカードのコンテナ */
 .info-cards-container {
     display: flex;
     justify-content: center;
@@ -506,6 +681,7 @@ footer {
     max-width: 900px;
     margin: 40px auto;
 }
+
 .info-card {
     flex: 1;
     padding: 20px;
@@ -513,49 +689,54 @@ footer {
     background-color: rgba(224, 180, 102, 0.05);
     text-align: center;
 }
+
 .info-card h3 {
     font-size: 20px;
     color: #e0b466;
     margin-bottom: 10px;
 }
+
 .info-card p {
     font-size: 14px;
     margin-bottom: 5px;
     line-height: 1.5;
 }
 
-/* 料金表のコンテナ */
 .price-table-container {
     max-width: 700px;
     margin: 30px auto 50px;
 }
+
 .price-table-container h3 {
     text-align: center;
     margin-bottom: 15px;
     font-size: 24px;
     color: #fff;
 }
+
 .price-table-container table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 }
+
 .price-table-container th, .price-table-container td {
     padding: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     font-size: 15px;
 }
+
 .price-table-container th {
     background-color: rgba(224, 180, 102, 0.3);
     color: #fff;
     font-weight: bold;
 }
+
 .price-table-container td {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* 詳細情報アコーディオン（NEWSセクションのスタイルを流用しつつ調整） */
 .lesson-details-container {
     max-width: 600px;
     margin: 20px auto 40px;
@@ -582,17 +763,18 @@ footer {
     color: #fff;
 }
 
-/* 詳細コンテンツ内の特殊スタイル */
 .lesson-details-container .detail-price {
     font-size: 18px;
     font-weight: bold;
     color: #e0b466;
     text-align: center !important;
 }
+
 .lesson-details-container .detail-policy, .detail-note {
     font-size: 14px;
     text-align: left !important;
 }
+
 .lesson-details-container h4 {
     color: #e0b466;
     font-size: 16px;
@@ -601,34 +783,38 @@ footer {
     text-align: left !important;
     font-weight: bold;
 }
+
 .lesson-details-container .mt-15 {
     margin-top: 15px;
 }
 
-/* お問い合わせ情報 */
 .lesson-contact-info {
     text-align: center;
     margin-top: 50px;
 }
+
 .lesson-contact-info h3 {
     font-size: 24px;
     color: #e0b466;
     margin-bottom: 10px;
 }
+
 .lesson-contact-info p {
     font-size: 16px;
     margin-bottom: 5px;
 }
+
 .lesson-contact-info a {
     color: #e0b466;
     text-decoration: underline;
 }
+
 .lesson-contact-info a:hover {
     color: #fff;
 }
 
 /* ==========================================================
- * 14. PROFILEセクションのスタイル
+ * 12. PROFILEセクションのスタイル
  * ========================================================== */
 
 .profile-container {
@@ -638,6 +824,7 @@ footer {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .profile-container h3 {
     text-align: left;
     color: #e0b466;
@@ -647,6 +834,7 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 5px;
 }
+
 .profile-container p.profile-name {
     font-size: 20px;
     font-weight: bold;
@@ -654,6 +842,7 @@ footer {
     margin-bottom: 5px;
     text-align: center;
 }
+
 .profile-container p.profile-quote {
     font-size: 16px;
     font-style: italic;
@@ -662,18 +851,16 @@ footer {
     text-align: center;
 }
 
-/* 経歴ハイライトボックスのコンテナ */
 .bio-cards-container {
     display: flex;
-    flex-wrap: wrap; /* 4つを横に並べる */
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin-bottom: 30px;
 }
 
-/* 各ハイライトカード */
 .bio-card {
-    flex: 1 1 calc(50% - 10px); /* 2列表示を基本とする (幅50% - 隙間10px) */
+    flex: 1 1 calc(50% - 10px);
     max-width: calc(50% - 10px);
     padding: 20px;
     background-color: rgba(224, 180, 102, 0.1);
@@ -710,13 +897,13 @@ footer {
     border-radius: 3px;
 }
 
-/* 受賞歴リスト */
 .award-list {
     list-style: none;
     padding: 0;
     max-width: 600px;
     margin: 0 auto 30px;
 }
+
 .award-list li {
     text-align: left;
     font-size: 15px;
@@ -724,6 +911,7 @@ footer {
     border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
     margin-left: 20px;
 }
+
 .award-list li::before {
     content: "★";
     color: #e0b466;
@@ -731,7 +919,6 @@ footer {
     font-size: 10px;
 }
 
-/* ソロ活動リスト */
 .solo-activity-list p {
     text-align: left;
     font-size: 14px;
@@ -742,7 +929,7 @@ footer {
 }
 
 /* ==========================================================
- * 15. GALLERYセクションのスタイル (ジャスティファイ・レイアウト)
+ * 13. GALLERYセクションのスタイル
  * ========================================================== */
 
 .gallery-intro-text {
@@ -751,39 +938,34 @@ footer {
     font-size: 16px;
 }
 
-/* ❗NEW: ジャスティファイ・レイアウトのコンテナ設定 */
 .gallery-grid-container.justified-container {
-    /* Flexboxを使って画像を一行に並べる */
     display: flex;
-    flex-wrap: wrap; /* 折り返しを有効にする */
-    justify-content: flex-start; /* 左寄せから開始 */
+    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: flex-start;
-    gap: 5px; /* 画像間のスキマ */
-    max-width: 1200px; /* PCでの最大幅 */
+    gap: 5px;
+    max-width: 1200px;
     margin: 0 auto;
-    background-color: #000; /* 背景を黒にして、余白を目立たなくする */
+    background-color: #000;
     padding: 5px 0;
 }
 
 .gallery-item {
     overflow: hidden;
-    /* ジャスティファイ・レイアウトではflexアイテムとして動作 */
-    height: 250px; /* 基準となる行の高さ (JSで動的に変わる) */
-    flex-grow: 1; /* 行内で幅を拡大する設定 (JSでリセットされる) */
-    
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 250px; 
+    flex-grow: 1; 
+    background-color: #111;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     position: relative;
     cursor: pointer;
-    /* 縦横比を保つハックを削除 */
+    border: none;
     padding-top: 0; 
 }
 
 .gallery-item img {
-    /* ❗最重要: 画像の縦横比を維持し、アイテムの高さいっぱいに表示する */
     height: 100%; 
     width: auto; 
-    object-fit: cover; /* 画像が切れないよう、containでも良いが、今回はheight:100%とJSで調整するためcoverにする */
+    object-fit: cover; 
     transition: filter 0.3s ease;
     display: block; 
 }
@@ -792,19 +974,15 @@ footer {
     filter: brightness(1.1);
 }
 
-/* プレースホルダーはHTMLから削除を推奨しますが、CSSは残しません */
-
-
 /* ==========================================================
- * 10. レスポンシブ対応 (Media Query: スマートフォン・タブレット)
+ * 14. レスポンシブ対応 (Media Query: スマートフォン・タブレット)
  * ========================================================== */
 @media screen and (max-width: 768px) {
-    /* --- 10.1. ヘッダーとハンバーガーメニュー --- */
+    /* ヘッダーとハンバーガーメニュー */
     header {
         padding: 10px 20px;
     }
     
-    /* モバイルでのナビゲーションの表示/非表示 */
     header nav {
         position: fixed;
         top: 0;
@@ -812,14 +990,14 @@ footer {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.95);
-        display: none; /* 初期は非表示 */
+        display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         z-index: 140; 
         transition: opacity 0.3s;
     }
-    /* JSで付与されるクラス。ナビゲーションを表示する */
+    
     header nav.nav-visible {
         display: flex; 
         opacity: 1;
@@ -835,7 +1013,6 @@ footer {
         z-index: 151; 
     }
     
-    /* メニュー項目とリストのスタイル */
     header nav ul {
         flex-direction: column;
         text-align: center;
@@ -852,21 +1029,20 @@ footer {
         display: block;
     }
     
-    /* --- 10.2. セクションとTOP --- */
-    /* セクションパディングの調整 */
+    /* セクションとTOP */
     .content-section {
         padding: 80px 20px;
     }
+    
     .key-title {
         font-size: 40px;
     }
+    
     .key-title .artist-name {
         font-size: 28px;
     }
     
-    /* --- 10.3. オーバーレイとモーダル --- */
-
-    /* サイドNEWS（モバイル時は横並びになるため位置をリセット） */
+    /* サイドNEWS（モバイル時はリセット） */
     #side-news-overlay {
         position: relative; 
         transform: none; 
@@ -877,22 +1053,69 @@ footer {
         background-color: rgba(0, 0, 0, 0.7);
         font-weight: normal;
         z-index: auto; 
-        top: auto; /* PC時のオフセットをリセット */
+        top: auto;
     }
     
-    /* LIVEモーダル (帯状レイアウトのモバイル修正) */
-    .modal-event-card {
-        flex-direction: column; /* モバイルでは縦並び */
-        align-items: center;
-        text-align: center;
-        gap: 15px;
+    /* BGMコントロール（モバイル対応） */
+    #bgm-control-overlay {
+        left: 10px;
+        bottom: 70px;
+        padding: 8px 10px;
+        width: 200px;
+        gap: 6px;
     }
-    .modal-event-image-box {
-        width: 60%;
-        max-width: 150px;
+    
+    #bgm-track-info {
+        min-height: 24px;
     }
-    .modal-event-text h3, .modal-event-text p {
-        text-align: center; /* モバイルではテキストも中央揃え */
+    
+    #bgm-track-name {
+        font-size: 10px;
+    }
+    
+    #bgm-controls-row {
+        gap: 8px;
+    }
+    
+    #bgm-toggle {
+        font-size: 18px;
+        width: 26px;
+        height: 26px;
+        padding: 2px;
+    }
+    
+    #bgm-volume-container {
+        gap: 6px;
+    }
+    
+    #bgm-volume {
+        min-width: 70px;
+        height: 5px;
+    }
+    
+    #bgm-volume::-webkit-slider-thumb {
+        width: 12px;
+        height: 12px;
+    }
+    
+    #bgm-volume::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+    }
+    
+    #volume-percentage {
+        font-size: 10px;
+        width: 28px;
+    }
+    
+    /* LIVEモーダル */
+    .modal-flyer-dual {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .flyer-side .live-flyer {
+        max-height: 250px;
     }
 
     /* LESSONセクション */
@@ -900,13 +1123,16 @@ footer {
         flex-direction: column;
         gap: 15px;
     }
+    
     .info-card {
         padding: 15px;
     }
+    
     .price-table-container th, .price-table-container td {
         padding: 8px;
         font-size: 13px;
     }
+    
     .lesson-intro, .lesson-intro-sub {
         font-size: 14px;
     }
@@ -915,6 +1141,7 @@ footer {
     .profile-container {
         padding: 15px;
     }
+    
     .profile-container h3 {
         font-size: 20px;
         margin-top: 20px;
@@ -925,18 +1152,22 @@ footer {
         flex-direction: column;
         gap: 15px;
     }
+    
     .bio-card {
         flex: 1 1 100%;
         max-width: 100%;
-        padding-right: 70px; /* 年号ラベルのためのスペース確保 */
+        padding-right: 70px;
     }
+    
     .bio-card h4 {
         font-size: 16px;
     }
+    
     .bio-card p {
         font-size: 13px;
         margin-bottom: 5px;
     }
+    
     .bio-card .bio-year-label {
         font-size: 11px;
     }
@@ -945,9 +1176,11 @@ footer {
         margin-left: 0;
         padding-left: 0;
     }
+    
     .award-list li {
         font-size: 13px;
     }
+    
     .solo-activity-list p {
         font-size: 13px;
     }
@@ -956,8 +1189,135 @@ footer {
     .gallery-grid-container.justified-container {
         gap: 3px;
     }
+    
     .gallery-item {
-        /* モバイルでは基準高さを小さく */
-        height: 150px; 
+        height: 120px; 
+    }
+}
+
+/* iPhone 12 mini (375px × 812px) 以下の小型端末対応 */
+@media screen and (max-width: 390px) {
+    /* ヘッダーロゴ */
+    #header-logo {
+        font-size: 20px;
+    }
+    
+    /* キータイトル */
+    .key-title {
+        font-size: 32px;
+        padding: 0 15px;
+    }
+    
+    .key-title .artist-name {
+        font-size: 24px;
+    }
+    
+    /* セクション */
+    .content-section {
+        padding: 60px 15px;
+    }
+    
+    .content-section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    /* BGMコントロール（さらに小型化） */
+    #bgm-control-overlay {
+        left: 5px;
+        bottom: 65px;
+        padding: 6px 8px;
+        width: 170px;
+        gap: 5px;
+    }
+    
+    #bgm-track-info {
+        min-height: 20px;
+        padding-bottom: 4px;
+    }
+    
+    #bgm-track-name {
+        font-size: 9px;
+        line-height: 1.2;
+    }
+    
+    #bgm-controls-row {
+        gap: 6px;
+    }
+    
+    #bgm-toggle {
+        font-size: 16px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    #bgm-volume-container {
+        gap: 4px;
+    }
+    
+    #bgm-volume {
+        min-width: 60px;
+        height: 4px;
+    }
+    
+    #bgm-volume::-webkit-slider-thumb {
+        width: 10px;
+        height: 10px;
+    }
+    
+    #bgm-volume::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+    }
+    
+    #volume-percentage {
+        font-size: 9px;
+        width: 24px;
+    }
+    
+    /* ライブイベント */
+    .live-event {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .live-event-image {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    /* フォーム */
+    .contact-form-skeleton {
+        padding: 15px;
+    }
+    
+    .contact-form-skeleton input[type="text"],
+    .contact-form-skeleton input[type="email"],
+    .contact-form-skeleton textarea,
+    .contact-form-skeleton select {
+        font-size: 14px;
+    }
+    
+    /* テーブル */
+    .price-table-container th, .price-table-container td {
+        padding: 6px;
+        font-size: 12px;
+    }
+    
+    /* ギャラリー */
+    .gallery-item {
+        height: 100px;
+    }
+    
+    /* サイドNEWS */
+    #side-news-overlay p {
+        font-size: 11px;
+    }
+    
+    /* ライブ情報オーバーレイ */
+    #live-info-overlay {
+        font-size: 12px;
+        padding: 12px;
     }
 }
