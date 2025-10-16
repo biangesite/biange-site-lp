@@ -45,14 +45,16 @@
                 {{#each news}}
                 <div class="news-accordion">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-{{@index}}')">
+                        <span class="news-category {{newsCategoryClass newsCategory}}">{{newsCategory}}</span>
                         <p class="news-item">{{formatDate newsDate}}　{{newsTitle}}</p>
                         <span class="accordion-icon">+</span>
                     </div>
                     <div id="news-detail-{{@index}}" class="news-item-detail" style="{{applyStyle newsDetailStyle 'newsDetail'}}">
                         {{{nl2br newsDetail}}}
                     </div>
-                    {{/each}}
                 </div>
+                {{/each}}
+            </div>
         </section>
 
         <section id="live" class="content-section" data-aos="fade-up">
