@@ -39,3 +39,8 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger Netlify Deploy
+        run: |
+          curl -X POST -d {} ${{ secrets.NETLIFY_DEPLOY_HOOK }}
+        if: success()
