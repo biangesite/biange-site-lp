@@ -32,6 +32,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add index.html
           git diff --staged --quiet || git commit -m "chore: update content from microCMS [skip ci]"
+          git remote set-url origin "https://$GH_TOKEN@github.com/biangesite/biange-site-lp.git"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
