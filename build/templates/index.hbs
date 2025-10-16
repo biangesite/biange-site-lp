@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div id="background-visual" style="background-image: url('https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/4a976d3ee2874622b959f97d29a4e9cd/erhu_key_visual.jpg');"></div>
+    <div id="background-visual" style="background-image: url('{{keyVisualImage.url}}');"></div>
 
     <div id="content-wrapper">
 
@@ -33,21 +33,46 @@
         </header>
 
         <section id="top" class="full-height-section">
-            <h1 class="key-title" data-aos="fade-up" data-aos-duration="2000" style="">
-                明るく静かな旋律が　あなたの心にふれる
-                <span class="artist-name" style="">BIAN GE</span>
+            <h1 class="key-title" data-aos="fade-up" data-aos-duration="2000" style="{{applyStyle keyTitleStyle 'keyTitle'}}">
+                {{keyTitle}}
+                <span class="artist-name" style="{{applyStyle artistNameStyle 'artistName'}}">{{artistName}}</span>
             </h1>
         </section>
 
         <section id="news" class="content-section" data-aos="fade-up">
             <h2>LATEST NEWS</h2>
             <div id="news-list">
+                {{#each news}}
+                <div class="news-accordion">
+                    <div class="news-item-header" onclick="toggleAccordion('news-detail-{{@index}}')">
+                        <p class="news-item">{{formatDate newsDate}}　{{newsTitle}}</p>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div id="news-detail-{{@index}}" class="news-item-detail" style="{{applyStyle newsDetailStyle 'newsDetail'}}">
+                        {{{nl2br newsDetail}}}
+                    </div>
+                    {{/each}}
                 </div>
         </section>
 
         <section id="live" class="content-section" data-aos="fade-up">
             <h2>LIVE SCHEDULE</h2>
             <div id="live-schedule" class="live-schedule-list">
+                {{#each liveEvents}}
+                <div class="live-event">
+                    <div class="live-event-image">
+                    <img src="{{liveFlyer1.url}}" alt="ライブフライヤー">
+                    </div>
+                    <div class="live-event-content">
+                        <span class="ticket-badge {{ticketBadgeClass ticketStatus}}">{{ticketStatus}}</span>
+                        <h3 style="{{applyStyle liveEventsStyle 'liveEventsTitle'}}">{{formatDate liveEventsDate}}　{{liveEventsTitle}}</h3>
+                           <p>{{venue}}</p>
+                           <p>開場 {{openTime}} / 開演 {{startTime}}</p>
+                           <p>{{ticketPrice}}</p>
+                           <p style="{{applyStyle setListStyle 'setList'}}">{{{nl2br setList}}}</p>
+                    </div>
+                </div>
+            {{/each}}
             </div>
         </section>
 
@@ -288,12 +313,12 @@
 
         <!-- サイドNEWS告知オーバーレイ -->
         <div id="side-news-overlay">
-            <p></p>
+            <p>{{liveOverlay.liveOverlayTitle}}</p>
         </div>
 
         <!-- LIVE情報トリガー -->
         <div id="live-info-overlay" onclick="toggleLiveModal()">
-            <p></p>
+            <p>{{liveOverlay.liveOverlayTitle}}</p>
         </div>
 
         <!-- BGMコントロール -->
@@ -323,21 +348,31 @@
             <div class="modal-content live-card-modal" onclick="event.stopPropagation()"> 
                 <button class="modal-close" onclick="toggleLiveModal()">×</button>
         
+                {{#if liveOverlay.liveOverlayDetails}}
+                <p style="text-align: center; margin-bottom: 20px;">{{{nl2br liveOverlay.liveOverlayDetails}}}</p>
+                {{/if}}
         
                 <div class="modal-flyer-dual">
                     <div class="flyer-side">
-                        <img src="" alt="ライブフライヤー 表面" class="live-flyer">
+                        <img src="{{liveOverlay.liveOverlayFlyer1.url}}" alt="ライブフライヤー 表面" class="live-flyer">
                         <p class="flyer-caption">詳細１</p>
                     </div>
                     <div class="flyer-side">
-                        <img src="" alt="ライブフライヤー 裏面" class="live-flyer">
+                        <img src="{{liveOverlay.liveOverlayFlyer2.url}}" alt="ライブフライヤー 裏面" class="live-flyer">
                         <p class="flyer-caption">詳細２</p>
                     </div>
                 </div>
 
+                {{#if liveOverlay.pdfFileUrl}}
+                    <p class="future-note pdf-link-note">
+                    <a href="{{liveOverlay.pdfFileUrl}}" target="_blank">
+                   【A4フライヤー両面 PDF版】をダウンロード・閲覧する
+                    </a>
+                    </p>
+                {{/if}}
 
                 <a href="#live" onclick="toggleLiveModal()">
-                    <div class="reserve-button"></div>
+                    <div class="reserve-button">{{liveOverlay.reserveButtonText}}</div>
                 </a>
             </div>
         </div>
