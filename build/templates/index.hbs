@@ -45,7 +45,7 @@
                 {{#each news}}
                 <div class="news-accordion">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-{{@index}}')">
-                        <span class="news-category {{newsCategoryClass newsCategory}}">{{newsCategory}}</span>
+                        <span class="news-category {{newsCategoryClass newsCategory}}">{{#if (isArray newsCategory)}}{{firstItem newsCategory}}{{else}}{{newsCategory}}{{/if}}</span>
                         <p class="news-item">{{formatDate newsDate}}　{{newsTitle}}</p>
                         <span class="accordion-icon">+</span>
                     </div>

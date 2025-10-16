@@ -51,6 +51,33 @@ Handlebars.registerHelper('nl2br', function(text) {
   return text.replace(/\n/g, '<br>');
 });
 
+// 配列かどうかを判定
+Handlebars.registerHelper('isArray', function(value) {
+  return Array.isArray(value);
+});
+
+// 配列の最初の要素を取得
+Handlebars.registerHelper('firstItem', function(array) {
+  if (Array.isArray(array) && array.length > 0) {
+    return array[0];
+  }
+  return '';
+});
+
+// NEWSカテゴリに応じたクラス名を返す
+Handlebars.registerHelper('newsCategoryClass', function(category) {
+  // カテゴリが配列の場合は最初の要素を使用
+  const categoryValue = Array.isArray(category) ? category[0] : category;
+  
+  const classes = {
+    'ライブ': 'news-category--live',
+    'メディア': 'news-category--media',
+    'リリース': 'news-category--release',
+    'その他': 'news-category--other'
+  };
+  return classes[categoryValue] || 'news-category--other';
+});
+
 // スタイルプリセットを適用
 Handlebars.registerHelper('applyStyle', function(styleName, type) {
   const styles = {
@@ -95,11 +122,25 @@ async function generateHTML() {
     console.log('🔄 Fetching data from microCMS...');
     console.log('');
     
-    // bgsitecontent エンドポイントから取得
-    const data = await fetchFromMicroCMS('bgsitecontent');
+    // コンテンツデータの取得
+    const [siteContent, newsItems] = await Promise.all([
+      fetchFromMicroCMS('bgsitecontent'),
+      fetchFromMicroCMS('news?orders=-newsDate&limit=5')  // 最新5件のみ取得
+    ]);
+    
+    // データの結合
+    const data = {
+      ...siteContent,
+      news: newsItems.contents // microCMSのリスト型コンテンツは contents 配列に格納される
+    };
     
     console.log('');
     console.log('✅ Data fetched successfully');
+    console.log('');
+    
+    // NEWSデータの詳細をデバッグ出力
+    console.log('📋 NEWS Data:');
+    console.log(JSON.stringify(newsItems, null, 2));
     console.log('');
     
     // データ構造確認（デバッグ用）
