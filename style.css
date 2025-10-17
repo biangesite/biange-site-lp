@@ -657,6 +657,38 @@ footer {
     font-size: 14px;
 }
 
+/* NEWSカテゴリスタイル */
+.news-category {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-right: 10px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.news-category--live {
+    background-color: #e0462d;
+    color: #fff;
+}
+
+.news-category--media {
+    background-color: #2d91e0;
+    color: #fff;
+}
+
+.news-category--release {
+    background-color: #e0b466;
+    color: #000;
+}
+
+.news-category--other {
+    background-color: #666666;
+    color: #fff;
+}
+
 /* ==========================================================
  * 11. LESSONセクションのスタイル
  * ========================================================== */
