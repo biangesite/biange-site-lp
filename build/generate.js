@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Node.js 18.17.1 で動作する静的生成スクリプト
 const fs = require('fs');
 const path = require('path');
@@ -41,10 +42,17 @@ async function fetchFromMicroCMS(endpoint) {
 // 日付フォーマットヘルパー（YYYY.MM.DD形式）
 Handlebars.registerHelper('formatDate', function(dateString) {
   if (!dateString) return '';
+  
+  // 日本時間（JST = UTC+9）として日付を取得
   const date = new Date(dateString);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  
+  // 日本時間での年月日を取得（getTimezoneOffsetを使用）
+  const jstDate = new Date(date.getTime() + (9 * 60 * 60 * 1000));
+  
+  const year = jstDate.getUTCFullYear();
+  const month = String(jstDate.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(jstDate.getUTCDate()).padStart(2, '0');
+  
   return `${year}.${month}.${day}`;
 });
 
