@@ -1,15 +1,18 @@
 {
   "name": "erhu_lp_site",
   "version": "1.0.0",
-  "description": "",
+  "description": "BIAN GE Official Site - Static Site Generator",
   "main": "script.js",
   "scripts": {
-  "build": "node build/generate.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build/generate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["erhu", "music", "static-site"],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "18.17.1"
+  },
   "dependencies": {
     "handlebars": "^4.7.7",
     "node-fetch": "^2.7.0"

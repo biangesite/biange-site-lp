@@ -12,24 +12,24 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+   
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+     
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-      
+     
       - name: Install dependencies
         run: npm ci
-      
+     
       - name: Generate HTML from microCMS
         env:
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
         run: npm run build
-      
+     
       - name: Commit and push changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -39,8 +39,8 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      
       - name: Trigger Netlify Deploy
+        if: success()
         run: |
           curl -X POST -d {} ${{ secrets.NETLIFY_DEPLOY_HOOK }}
-        if: success()

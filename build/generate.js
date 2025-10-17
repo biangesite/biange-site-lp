@@ -25,10 +25,13 @@ async function fetchFromMicroCMS(endpoint) {
     });
     
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP ${response.status}: ${response.statusText}\n${errorText}`);
     }
     
-    return await response.json();
+    const data = await response.json();
+    console.log(`  ✓ Success: ${endpoint}`);
+    return data;
   } catch (error) {
     console.error(`  ❌ Failed to fetch ${endpoint}:`, error.message);
     throw error;
@@ -48,7 +51,7 @@ Handlebars.registerHelper('formatDate', function(dateString) {
 // 改行をHTMLの<br>に変換
 Handlebars.registerHelper('nl2br', function(text) {
   if (!text) return '';
-  return text.replace(/\n/g, '<br>');
+  return new Handlebars.SafeString(text.replace(/\n/g, '<br>'));
 });
 
 // 配列かどうかを判定
@@ -123,30 +126,42 @@ async function generateHTML() {
     console.log('');
     
     // コンテンツデータの取得
-    const [siteContent, newsItems] = await Promise.all([
+    const [siteContent, newsResponse] = await Promise.all([
       fetchFromMicroCMS('bgsitecontent'),
-      fetchFromMicroCMS('news?orders=-newsDate&limit=5')  // 最新5件のみ取得
+      fetchFromMicroCMS('news?orders=-newsDate&limit=10')  // 最新10件を取得
     ]);
-    
-    // データの結合
-    const data = {
-      ...siteContent,
-      news: newsItems.contents // microCMSのリスト型コンテンツは contents 配列に格納される
-    };
     
     console.log('');
     console.log('✅ Data fetched successfully');
     console.log('');
     
     // NEWSデータの詳細をデバッグ出力
-    console.log('📋 NEWS Data:');
-    console.log(JSON.stringify(newsItems, null, 2));
+    console.log('📋 NEWS Response Structure:');
+    console.log(JSON.stringify(newsResponse, null, 2));
     console.log('');
     
+    // データの結合（newsResponseがcontents配列を持つか確認）
+    const newsItems = newsResponse.contents || newsResponse || [];
+
+    console.log(`📰 NEWS Items Count: ${newsItems.length}`);
+    if (newsItems.length > 0) {
+      console.log('📰 First NEWS Item:');
+      console.log(JSON.stringify(newsItems[0], null, 2));
+    } else {
+      console.warn('⚠️  WARNING: No NEWS items found!');
+    }
+    console.log('');
+
+    const data = {
+      ...siteContent,
+      news: newsItems
+    };
+    
     // データ構造確認（デバッグ用）
-    console.log('📋 Data structure:');
+    console.log('📋 Final Data Structure:');
     console.log(`  - keyVisualImage: ${data.keyVisualImage ? '✓' : '✗'}`);
     console.log(`  - keyTitle: ${data.keyTitle ? '✓' : '✗'}`);
+    console.log(`  - artistName: ${data.artistName ? '✓' : '✗'}`);
     console.log(`  - news: ${data.news ? data.news.length + ' items' : '✗'}`);
     console.log(`  - liveEvents: ${data.liveEvents ? data.liveEvents.length + ' items' : '✗'}`);
     console.log(`  - liveOverlay: ${data.liveOverlay ? '✓' : '✗'}`);
@@ -174,11 +189,15 @@ async function generateHTML() {
     fs.writeFileSync(outputPath, html, 'utf8');
 
     console.log(`✅ HTML generated: ${outputPath}`);
+    console.log(`📄 File size: ${(html.length / 1024).toFixed(2)} KB`);
     console.log('🚀 Ready for deployment');
     console.log('');
   } catch (error) {
     console.error('');
     console.error('❌ Generation failed:', error.message);
+    if (error.stack) {
+      console.error('Stack trace:', error.stack);
+    }
     console.error('');
     process.exit(1);
   }
