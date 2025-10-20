@@ -408,3 +408,13 @@ window.addEventListener('load', () => {
         justifyImages();
     }, 100);
 });
+
+// ページ読み込み時に常にトップへスクロール
+window.addEventListener('load', function() {
+    // URLのハッシュを削除
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
+    // トップにスクロール
+    window.scrollTo(0, 0);
+});

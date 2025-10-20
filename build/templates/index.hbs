@@ -40,7 +40,7 @@
         </section>
 
         <section id="news" class="content-section" data-aos="fade-up">
-            <h2>LATEST NEWS</h2>
+            <h2>NEWS UPDATES</h2>
             <div id="news-list">
                 {{#each news}}
                 <div class="news-accordion">
@@ -57,26 +57,78 @@
             </div>
         </section>
 
-        <section id="live" class="content-section" data-aos="fade-up">
-            <h2>LIVE SCHEDULE</h2>
-            <div id="live-schedule" class="live-schedule-list">
-                {{#each liveEvents}}
-                <div class="live-event">
-                    <div class="live-event-image">
-                    <img src="{{liveFlyer1.url}}" alt="ライブフライヤー">
+<section id="live" class="content-section" data-aos="fade-up">
+    <h2>UPCOMING LIVE</h2>
+    <div id="live-schedule" class="live-schedule-container">
+        {{#if latestLive}}
+        <div class="live-event-featured">
+            <!-- フライヤー画像（上部） -->
+            <div class="live-featured-image">
+                <img src="{{latestLive.liveFlyer1.url}}" alt="{{latestLive.liveEventsTitle}}">
+            </div>
+            
+            <!-- ライブ詳細情報 -->
+            <div class="live-featured-content">
+                <span class="ticket-badge {{ticketBadgeClass latestLive.ticketStatus}}">
+                    {{#if (isArray latestLive.ticketStatus)}}{{firstItem latestLive.ticketStatus}}{{else}}{{latestLive.ticketStatus}}{{/if}}
+                </span>
+                <h3>{{formatDate latestLive.liveEventsDate}}　{{latestLive.liveEventsTitle}}</h3>
+                <p>{{latestLive.venue}}</p>
+                <p>開場 {{latestLive.openTime}} / 開演 {{latestLive.startTime}}</p>
+                <p>前売 ¥{{latestLive.ticketPriceadv}} / 当日 ¥{{latestLive.ticketPrice}}</p>
+                
+                <!-- セットリスト表示制御 -->
+                {{#if latestLive.isFinished}}
+                    {{#if latestLive.fullSetList}}
+                    <div class="setlist-section">
+                        <h4>セットリスト（全曲）</h4>
+                        <p>{{{nl2br latestLive.fullSetList}}}</p>
                     </div>
-                    <div class="live-event-content">
-                        <span class="ticket-badge {{ticketBadgeClass ticketStatus}}">{{ticketStatus}}</span>
-                        <h3 style="{{applyStyle liveEventsStyle 'liveEventsTitle'}}">{{formatDate liveEventsDate}}　{{liveEventsTitle}}</h3>
-                           <p>{{venue}}</p>
-                           <p>開場 {{openTime}} / 開演 {{startTime}}</p>
-                           <p>{{ticketPrice}}</p>
-                           <p style="{{applyStyle setListStyle 'setList'}}">{{{nl2br setList}}}</p>
+                    {{else if latestLive.setList}}
+                    <div class="setlist-section">
+                        <h4>セットリスト</h4>
+                        <p>{{{nl2br latestLive.setList}}}</p>
+                    </div>
+                    {{/if}}
+                {{else}}
+                    {{#if latestLive.setList}}
+                    <div class="setlist-section">
+                        <h4>演奏予定曲</h4>
+                        <p>{{{nl2br latestLive.setList}}}</p>
+                    </div>
+                    {{/if}}
+                {{/if}}
+                
+                <!-- 演奏者情報 -->
+                {{#if latestLive.livePerformers}}
+                <div class="performers-section">
+                    <h4>演奏者</h4>
+                    <div class="performers-grid">
+                        {{#each latestLive.livePerformers}}
+                        <div class="performer-card">
+                            {{#if performerImage}}
+                            <img src="{{performerImage.url}}" alt="{{performerName}}">
+                            {{/if}}
+                            <p class="performer-name">{{performerName}}</p>
+                            <p class="performer-part">
+                                {{#if (isArray performerPart)}}
+                                    {{#each performerPart}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+                                {{else}}
+                                    {{performerPart}}
+                                {{/if}}
+                            </p>
+                        </div>
+                        {{/each}}
                     </div>
                 </div>
-            {{/each}}
+                {{/if}}
             </div>
-        </section>
+        </div>
+        {{else}}
+        <p class="no-live-message">現在、予定されているライブ情報はありません。</p>
+        {{/if}}
+    </div>
+</section>
 
         <section id="lesson" class="content-section" data-aos="fade-up">
             <h2>LESSON / WORKSHOP</h2>
@@ -315,13 +367,28 @@
 
         <!-- サイドNEWS告知オーバーレイ -->
         <div id="side-news-overlay">
+         {{#if sideOverlayText}}
+            <p>{{sideOverlayText}}</p>
+         {{else if latestLive}}
+            <p>🎵 NEXT LIVE: {{formatDate latestLive.liveEventsDate}} {{latestLive.venue}}</p>
+         {{else}}
+            <p>🎵 最新情報をお待ちください</p>
+         {{/if}}
+        </div>
             <p>{{liveOverlay.liveOverlayTitle}}</p>
         </div>
 
         <!-- LIVE情報トリガー -->
-        <div id="live-info-overlay" onclick="toggleLiveModal()">
-            <p>{{liveOverlay.liveOverlayTitle}}</p>
-        </div>
+{{#if latestLive}}
+<div id="live-info-overlay" onclick="toggleLiveModal()">
+    <div class="live-overlay-content">
+        <span class="live-overlay-label">NEXT LIVE</span>
+        <span class="live-overlay-date">{{formatDate latestLive.liveEventsDate}}</span>
+        <span class="live-overlay-venue">{{latestLive.venue}}</span>
+        <span class="live-overlay-status">{{#if (isArray latestLive.ticketStatus)}}{{firstItem latestLive.ticketStatus}}{{else}}{{latestLive.ticketStatus}}{{/if}}</span>
+    </div>
+</div>
+{{/if}}
 
         <!-- BGMコントロール -->
         <div id="bgm-control-overlay">
@@ -346,38 +413,42 @@
         </audio>
 
         <!-- LIVE詳細モーダル -->
-        <div id="live-detail-modal" onclick="toggleLiveModal(event)"> 
-            <div class="modal-content live-card-modal" onclick="event.stopPropagation()"> 
-                <button class="modal-close" onclick="toggleLiveModal()">×</button>
-        
-                {{#if liveOverlay.liveOverlayDetails}}
-                <p style="text-align: center; margin-bottom: 20px;">{{{nl2br liveOverlay.liveOverlayDetails}}}</p>
-                {{/if}}
-        
-                <div class="modal-flyer-dual">
-                    <div class="flyer-side">
-                        <img src="{{liveOverlay.liveOverlayFlyer1.url}}" alt="ライブフライヤー 表面" class="live-flyer">
-                        <p class="flyer-caption">詳細１</p>
-                    </div>
-                    <div class="flyer-side">
-                        <img src="{{liveOverlay.liveOverlayFlyer2.url}}" alt="ライブフライヤー 裏面" class="live-flyer">
-                        <p class="flyer-caption">詳細２</p>
-                    </div>
-                </div>
+{{#if latestLive}}
+<div id="live-detail-modal" onclick="toggleLiveModal(event)">
+    <div class="modal-content live-card-modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="toggleLiveModal()">×</button>
 
-                {{#if liveOverlay.pdfFileUrl}}
-                    <p class="future-note pdf-link-note">
-                    <a href="{{liveOverlay.pdfFileUrl}}" target="_blank">
-                   【A4フライヤー両面 PDF版】をダウンロード・閲覧する
-                    </a>
-                    </p>
-                {{/if}}
+        {{#if latestLive.overlayDetails}}
+        <p style="text-align: center; margin-bottom: 20px;">{{{nl2br latestLive.overlayDetails}}}</p>
+        {{/if}}
 
-                <a href="#live" onclick="toggleLiveModal()">
-                    <div class="reserve-button">{{liveOverlay.reserveButtonText}}</div>
-                </a>
+        <div class="modal-flyer-dual">
+            <div class="flyer-side">
+                <img src="{{latestLive.liveFlyer1.url}}" alt="ライブフライヤー 表面" class="live-flyer">
+                <p class="flyer-caption">詳細１</p>
             </div>
+            {{#if latestLive.liveFlyer2}}
+            <div class="flyer-side">
+                <img src="{{latestLive.liveFlyer2.url}}" alt="ライブフライヤー 裏面" class="live-flyer">
+                <p class="flyer-caption">詳細２</p>
+            </div>
+            {{/if}}
         </div>
+
+        {{#if latestLive.pdfFileUrl}}
+        <p class="future-note pdf-link-note">
+            <a href="{{latestLive.pdfFileUrl}}" target="_blank">
+                【A4フライヤー両面 PDF版】をダウンロード・閲覧する
+            </a>
+        </p>
+        {{/if}}
+
+        <a href="#live" onclick="toggleLiveModal()">
+            <div class="reserve-button">{{latestLive.reserveButtonText}}</div>
+        </a>
+    </div>
+</div>
+{{/if}}
 
     </div>
 

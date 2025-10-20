@@ -82,8 +82,12 @@ Handlebars.registerHelper('newsCategoryClass', function(category) {
   
   const classes = {
     'ライブ': 'news-category--live',
-    'メディア': 'news-category--media',
+    'ゲスト出演': 'news-category--guest',
+    'レッスン': 'news-category--lesson',
     'リリース': 'news-category--release',
+    '二胡教室': 'news-category--erhu-class',
+    'イベント': 'news-category--event',
+    'お知らせ': 'news-category--announcement',
     'その他': 'news-category--other'
   };
   return classes[categoryValue] || 'news-category--other';
@@ -134,16 +138,24 @@ async function generateHTML() {
     console.log('');
     
     // コンテンツデータの取得
-    const [siteContent, newsResponse] = await Promise.all([
+    const [siteContent, newsResponse, liveResponse] = await Promise.all([
       fetchFromMicroCMS('bgsitecontent'),
-      fetchFromMicroCMS('news?orders=-newsDate&limit=10')  // 最新10件を取得
+      fetchFromMicroCMS('news?orders=-newsDate&limit=10'),
+      fetchFromMicroCMS('live?orders=-liveEventsDate&limit=10')
     ]);
-    
+        // ↓↓↓  liveResponseのデータの詳細をデバッグ出力 ↓↓↓
+    console.log('');
+    console.log('🔍 DEBUG: liveResponse:');
+    console.log(JSON.stringify(liveResponse, null, 2));
+    console.log('');
+
     console.log('');
     console.log('✅ Data fetched successfully');
+    console.log('🔍 DEBUG: siteContent:');
+    console.log(JSON.stringify(siteContent, null, 2));
     console.log('');
     
-    // NEWSデータの詳細をデバッグ出力
+    // NEWS
     console.log('📋 NEWS Response Structure:');
     console.log(JSON.stringify(newsResponse, null, 2));
     console.log('');
@@ -160,9 +172,26 @@ async function generateHTML() {
     }
     console.log('');
 
+    // LIVEデータ処理
+    const liveItems = liveResponse.contents || liveResponse || [];
+    console.log(`🎵 LIVE Items Count: ${liveItems.length}`);
+    console.log('🎵 All LIVE Items:');
+    liveItems.forEach((item, index) => {
+      console.log(`  [${index}] showAsLatest: ${item.showAsLatest}, title: ${item.liveEventsTitle}`);
+    });
+
+    const latestLive = liveItems.find(item => item.showAsLatest) || liveItems[0] || null;
+    if (latestLive) {
+      console.log('🎵 Latest LIVE:');
+      console.log(JSON.stringify(latestLive, null, 2));
+    }
+    console.log('');
+
     const data = {
       ...siteContent,
-      news: newsItems
+      news: newsItems,
+      liveEvents: liveItems,
+      latestLive: latestLive
     };
     
     // データ構造確認（デバッグ用）
@@ -172,6 +201,7 @@ async function generateHTML() {
     console.log(`  - artistName: ${data.artistName ? '✓' : '✗'}`);
     console.log(`  - news: ${data.news ? data.news.length + ' items' : '✗'}`);
     console.log(`  - liveEvents: ${data.liveEvents ? data.liveEvents.length + ' items' : '✗'}`);
+    console.log(`  - latestLive: ${data.latestLive ? '✓' : '✗'}`);
     console.log(`  - liveOverlay: ${data.liveOverlay ? '✓' : '✗'}`);
     console.log('');
 

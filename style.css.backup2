@@ -12,25 +12,10 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-y: scroll;  /* 追加 */
-    scrollbar-width: none;  /* 追加 */
-    -ms-overflow-style: none;  /* 追加 */
-}
-
-html::-webkit-scrollbar {
-    display: none;  /* 追加 */
 }
 body {
     scroll-behavior: smooth;
-    overflow-y: scroll;  /* 追加 */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE, Edge */
-}
-
-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-    width: 0;  /* 追加 */
-    background: transparent;  /* 追加 */
+    overflow-x: hidden;
 }
 
 /* スクロール禁止クラス（モーダル・メニュー表示時） */
@@ -164,250 +149,7 @@ header nav a:hover {
     font-family: 'Noto Serif JP', serif; 
     font-weight: 700; 
 }
-/* ==========================================================
- * UPCOMING LIVE セクション（再設計版）
- * ========================================================== */
 
-.live-schedule-container {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.live-event-featured {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    text-align: center;
-}
-
-/* フライヤー画像（上部） */
-.live-featured-image {
-    max-width: 350px;
-    margin: 0 auto 30px;
-    text-align: center;
-}
-
-.live-featured-image img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border: 1px solid #e0b466;
-}
-
-/* ライブ詳細コンテンツ */
-.live-featured-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.live-featured-content h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #fff;
-    font-weight: 700;
-    text-align: center;
-}
-
-.live-featured-content p {
-    margin: 8px 0;
-    line-height: 1.6;
-    font-size: 16px;
-    text-align: center;
-}
-
-/* チケットバッジ */
-.ticket-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    border: 2px solid;
-}
-
-.ticket-badge--available {
-    background-color: rgba(76, 175, 80, 0.2);
-    color: #4CAF50;
-    border-color: #4CAF50;
-}
-
-.ticket-badge--soldout {
-    background-color: rgba(244, 67, 54, 0.2);
-    color: #F44336;
-    border-color: #F44336;
-}
-
-.ticket-badge--default {
-    background-color: rgba(224, 180, 102, 0.2);
-    color: #e0b466;
-    border-color: #e0b466;
-}
-
-.ticket-badge--reservation {
-    background-color: rgba(33, 150, 243, 0.2);
-    color: #2196F3;
-    border-color: #2196F3;
-}
-
-.ticket-badge--closed {
-    background-color: rgba(158, 158, 158, 0.2);
-    color: #9E9E9E;
-    border-color: #9E9E9E;
-}
-
-/* セットリストセクション */
-.setlist-section {
-    margin: 25px auto;
-    padding: 20px;
-    max-width: 600px;
-    background-color: rgba(224, 180, 102, 0.1);
-    border-left: 4px solid #e0b466;
-    text-align: center;
-}
-
-.setlist-section h4 {
-    color: #e0b466;
-    margin-bottom: 10px;
-    font-size: 18px;
-    text-align: center;
-}
-
-.setlist-section p {
-    color: #fff;
-    line-height: 1.8;
-    font-size: 15px;
-    text-align: center;
-}
-
-/* 演奏者セクション */
-.performers-section {
-    margin-top: 35px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(224, 180, 102, 0.3);
-}
-
-.performers-section h4 {
-    color: #e0b466;
-    margin-bottom: 25px;
-    font-size: 20px;
-    text-align: center;
-}
-
-.performers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.performer-card {
-    text-align: center;
-    padding: 20px 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    transition: all 0.3s;
-    width: 140px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.performer-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 16px rgba(224, 180, 102, 0.3);
-}
-
-.performer-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 0 auto 15px;
-    border: 3px solid rgba(224, 180, 102, 0.4);
-    display: block;
-}
-
-.performer-name {
-    font-weight: bold;
-    color: #ffffff;
-    font-size: 15px;
-    margin: 10px 0 6px;
-}
-
-.performer-part {
-    color: #e0b466;
-    font-size: 13px;
-    font-style: italic;
-    line-height: 1.4;
-}
-
-/* メッセージ */
-.no-live-message {
-    text-align: center;
-    padding: 40px 20px;
-    color: #aaa;
-    font-size: 16px;
-}
-
-/* ==========================================================
- * レスポンシブ対応
- * ========================================================== */
-@media screen and (max-width: 768px) {
-    .live-event-featured {
-        padding: 20px;
-    }
-    
-    .live-featured-image {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .live-featured-content h3 {
-        font-size: 20px;
-    }
-    
-    .live-featured-content p {
-        font-size: 14px;
-    }
-    
-    .performers-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 15px;
-    }
-    
-    .performer-card {
-        width: 100px;
-        padding: 15px 10px;
-    }
-    
-    .performer-card img {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .performer-name {
-        font-size: 13px;
-    }
-    
-    .performer-part {
-        font-size: 11px;
-    }
-    
-    .setlist-section {
-        padding: 15px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .performers-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 /* ニュース・ライブコンテンツのスタイル */
 .live-schedule-list {
     max-width: 900px;
@@ -536,14 +278,14 @@ header nav a:hover {
 /* サイドNEWS（画面右側固定） */
 #side-news-overlay {
     position: fixed;
-    right: 18px;
-    top: 70%;
+    right: 0;
+    top: 55%;
     padding: 10px 20px;
-    background-color: rgba(224, 180, 102, 0.4);
-    z-index:150; 
+    background-color: rgba(100, 100, 100, 0.5);
+    z-index: 90; 
     white-space: nowrap;
-    transform-origin: 100% 50%;
-    transform: translateY(-50%) rotate(90deg);
+    transform-origin: 100% 0;
+    transform: translateY(-50%) rotate(90deg) translateX(50px); 
     font-weight: bold;
     border: 1px solid rgba(224, 180, 102, 0.6);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -974,18 +716,8 @@ footer {
 }
 
 .news-category--live {
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.5) 0%, #c41e3a 80%);
+    background-color: #e0462d;
     color: #fff;
-}
-
-.news-category--guest {
-    background-color: #fa84b9;
-    color: #000;
-}
-
-.news-category--lesson {
-    background-color: #d9fc3a;
-    color: #000;
 }
 
 .news-category--media {
@@ -994,22 +726,7 @@ footer {
 }
 
 .news-category--release {
-    background: linear-gradient(135deg, #e0b466 0%, rgba(224, 180, 102, 0.3) 85%);
-    color: #fff;  /* 白 */
-}
-
-.news-category--erhu-class {
-    background-color: #b19cd9;
-    color: #663399;
-}
-
-.news-category--event {
-    background-color: #f7d714;
-    color: #000;
-}
-
-.news-category--announcement {
-    background-color: #ffb8f5;
+    background-color: #e0b466;
     color: #000;
 }
 
@@ -1699,4 +1416,7 @@ footer {
         font-size: 12px;
         padding: 12px;
     }
+}
+* {
+    outline: 1px solid red !important;
 }
