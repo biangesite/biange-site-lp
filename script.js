@@ -402,21 +402,24 @@ window.addEventListener('resize', () => {
     }, 150);
 });
 
-// 画面の完全なロード後にも一度実行（保険）
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        justifyImages();
-    }, 100);
-});
-
-// ページ読み込み時に常にトップへスクロール
+// ページ読み込み時の処理
 window.addEventListener('load', function() {
     // URLのハッシュを削除
     if (window.location.hash) {
-        history.replaceState(null, null, ' ');
+        history.replaceState(null, null, window.location.pathname);
     }
-    // トップにスクロール
-    window.scrollTo(0, 0);
+    
+    // トップにスクロール（即座に）
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+    });
+    
+    // 画像の配置調整（少し遅延）
+    setTimeout(() => {
+        justifyImages();
+    }, 100);
 });
 // ==========================================================
 // ギャラリーモーダル機能
