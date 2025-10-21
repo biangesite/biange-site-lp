@@ -418,3 +418,78 @@ window.addEventListener('load', function() {
     // トップにスクロール
     window.scrollTo(0, 0);
 });
+// ==========================================================
+// ギャラリーモーダル機能
+// ==========================================================
+
+const galleryImages = [
+    { src: './images/gallery_portrait_001.jpg', caption: '2024年春 すみだトリフォニー公演より' },
+    { src: './images/gallery_portrait_002.jpg', caption: 'リハーサル風景' },
+    { src: './images/gallery_portrait_003.jpg', caption: 'ステージ演奏中' },
+    { src: './images/gallery_portrait_004.jpg', caption: 'アーティスト写真4' },
+    { src: './images/gallery_portrait_005.jpg', caption: 'アーティスト写真5' },
+    { src: './images/gallery_portrait_006.jpg', caption: 'アーティスト写真6' },
+    { src: './images/gallery_portrait_007.jpg', caption: 'アーティスト写真7' },
+    { src: './images/gallery_portrait_008.jpg', caption: 'アーティスト写真8' },
+    { src: './images/gallery_portrait_009.jpg', caption: 'アーティスト写真9' },
+    { src: './images/gallery_portrait_010.jpg', caption: 'アーティスト写真10' },
+    { src: './images/gallery_portrait_011.jpg', caption: 'アーティスト写真11' },
+    { src: './images/gallery_portrait_012.jpg', caption: 'アーティスト写真12' },
+    { src: './images/gallery_portrait_013.jpg', caption: 'アーティスト写真13' }
+];
+
+let currentImageIndex = 0;
+
+function openGalleryModal(index) {
+    currentImageIndex = index;
+    const modal = document.getElementById('gallery-modal');
+    const img = document.getElementById('gallery-modal-img');
+    const caption = document.getElementById('gallery-modal-caption');
+    
+    img.src = galleryImages[index].src;
+    caption.textContent = galleryImages[index].caption;
+    
+    modal.classList.add('show');
+    document.body.classList.add('no-scroll');
+}
+
+function closeGalleryModal(event) {
+    // 背景クリックまたは×ボタンクリック時のみ閉じる
+    if (!event || event.target.id === 'gallery-modal' || event.target.classList.contains('gallery-modal-close')) {
+        const modal = document.getElementById('gallery-modal');
+        modal.classList.remove('show');
+        document.body.classList.remove('no-scroll');
+    }
+}
+
+function changeGalleryImage(direction) {
+    currentImageIndex += direction;
+    
+    // ループ処理
+    if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+    } else if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+    }
+    
+    const img = document.getElementById('gallery-modal-img');
+    const caption = document.getElementById('gallery-modal-caption');
+    
+    img.src = galleryImages[currentImageIndex].src;
+    caption.textContent = galleryImages[currentImageIndex].caption;
+}
+
+// キーボード操作（矢印キー、ESC）
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('gallery-modal');
+    if (modal && modal.classList.contains('show')) {
+        e.preventDefault(); // キー操作時の画面スクロール防止
+        if (e.key === 'ArrowLeft') {
+            changeGalleryImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeGalleryImage(1);
+        } else if (e.key === 'Escape') {
+            closeGalleryModal();
+        }
+    }
+});

@@ -54,12 +54,12 @@
                 </div>
                 <div class="news-accordion">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-1')">
-                        <span class="news-category news-category--live">ライブ</span>
+                        <span class="news-category news-category--announcement">お知らせ</span>
                         <p class="news-item">2025.10.13　BIAN GE 初夏の彩コンサート 開催決定！！</p>
                         <span class="accordion-icon">+</span>
                     </div>
                     <div id="news-detail-1" class="news-item-detail" style="">
-                        2026年5月15日(金) に、すみだトリフォニー 小ホールにて、BIAN GE 初夏の彩コンサートを開催します。<br>二胡が奏でる、優雅で情感豊かな音の世界へようこそ。<br>心に響く旋律とともに、特別なひとときをお楽しみください。<br>開場18:00　開演18:30<br>前売5,000円　当日6,000円<br>演奏予定曲　異邦人　Top of the world　賽馬　別れの曲　ほか
+                        2026年5月15日(金) に、すみだトリフォニー 小ホールにて、BIAN GE 初夏の彩コンサートを開催します。<br>二胡が奏でる、優雅で情感豊かな音の世界へようこそ。<br>心に響く旋律とともに、特別なひとときをお楽しみください。<br>開場18:00　開演18:30<br>前売5,000円　当日6,000円<br>演奏予定曲　異邦人　Top of the world　賽馬　別れの曲　ほか<br>チケットの準備ができ次第、本サイトでお知らせいたします。<br>販売開始まで、しばらくお待ちください✨
                     </div>
                 </div>
                 <div class="news-accordion">
@@ -399,31 +399,76 @@
             <div id="form-status-message" class="form-status-skeleton"></div>
         </section>
 
-        <section id="gallery" class="content-section" data-aos="fade-up">
-            <h2>GALLERY</h2>
-            
-            <p class="gallery-intro-text">
-                日々、忙しく激烈なお仕事で疲労されても二胡の音色で癒されるでしょう。休日をゆったりと演奏するのもアリかなと思います。また、人生100年時代、リタイア後の楽しみに今から準備されてはいかがでしょう？ 既にリタイアされた方は今からでも遅くないですよ。
-            </p>
+<section id="gallery" class="content-section" data-aos="fade-up">
+    <h2>GALLERY</h2>
+    <p class="gallery-intro-text">
+        日々、忙しく激烈なお仕事で疲労されても二胡の音色で癒されるでしょう。休日をゆったりと演奏するのもアリかなと思います。また、人生100年時代、リタイア後の楽しみに今から準備されてはいかがでしょう？ 既にリタイアされた方は今からでも遅くないですよ。
+    </p>
+    
+    <div class="gallery-grid">
+        <div class="gallery-item" onclick="openGalleryModal(0)">
+            <img src="./images/gallery_portrait_001.jpg" alt="2024年春 すみだトリフォニー公演より">
+            <div class="gallery-caption">2024年春 すみだトリフォニー公演より</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(1)">
+            <img src="./images/gallery_portrait_002.jpg" alt="リハーサル風景">
+            <div class="gallery-caption">リハーサル風景</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(2)">
+            <img src="./images/gallery_portrait_003.jpg" alt="ステージ演奏中">
+            <div class="gallery-caption">ステージ演奏中</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(3)">
+            <img src="./images/gallery_portrait_004.jpg" alt="アーティスト写真4">
+            <div class="gallery-caption">アーティスト写真4</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(4)">
+            <img src="./images/gallery_portrait_005.jpg" alt="アーティスト写真5">
+            <div class="gallery-caption">アーティスト写真5</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(5)">
+            <img src="./images/gallery_portrait_006.jpg" alt="アーティスト写真6">
+            <div class="gallery-caption">アーティスト写真6</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(6)">
+            <img src="./images/gallery_portrait_007.jpg" alt="アーティスト写真7">
+            <div class="gallery-caption">アーティスト写真7</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(7)">
+            <img src="./images/gallery_portrait_008.jpg" alt="アーティスト写真8">
+            <div class="gallery-caption">アーティスト写真8</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(8)">
+            <img src="./images/gallery_portrait_009.jpg" alt="アーティスト写真9">
+            <div class="gallery-caption">アーティスト写真9</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(9)">
+            <img src="./images/gallery_portrait_010.jpg" alt="アーティスト写真10">
+            <div class="gallery-caption">アーティスト写真10</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(10)">
+            <img src="./images/gallery_portrait_011.jpg" alt="アーティスト写真11">
+            <div class="gallery-caption">アーティスト写真11</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(11)">
+            <img src="./images/gallery_portrait_012.jpg" alt="アーティスト写真12">
+            <div class="gallery-caption">アーティスト写真12</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(12)">
+            <img src="./images/gallery_portrait_013.jpg" alt="アーティスト写真13">
+            <div class="gallery-caption">アーティスト写真13</div>
+        </div>
+    </div>
+</section>
 
-            <div class="gallery-grid-container justified-container">
-                <div class="gallery-item"><img src="./images/gallery_portrait_001.jpg" alt="アーティスト写真1"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_002.jpg" alt="アーティスト写真2"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_003.jpg" alt="アーティスト写真3"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_004.jpg" alt="アーティスト写真4"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_005.jpg" alt="アーティスト写真5"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_006.jpg" alt="アーティスト写真6"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_007.jpg" alt="アーティスト写真7"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_008.jpg" alt="アーティスト写真8"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_009.jpg" alt="アーティスト写真9"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_010.jpg" alt="アーティスト写真10"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_011.jpg" alt="アーティスト写真11"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_012.jpg" alt="アーティスト写真12"></div>
-                <div class="gallery-item"><img src="./images/gallery_portrait_013.jpg" alt="アーティスト写真13"></div>
-            </div>
-            
-            <p class="future-note">※画像をクリックで拡大表示する機能を将来的に追加予定</p>
-        </section>
+<!-- ギャラリーモーダル -->
+<div id="gallery-modal" class="gallery-modal" onclick="closeGalleryModal(event)">
+    <span class="gallery-modal-close" onclick="closeGalleryModal()">&times;</span>
+    <button class="gallery-modal-prev" onclick="changeGalleryImage(-1)">&#10094;</button>
+    <button class="gallery-modal-next" onclick="changeGalleryImage(1)">&#10095;</button>
+    <img id="gallery-modal-img" src="" alt="">
+    <div id="gallery-modal-caption"></div>
+</div>
 
         <!-- サイドNEWS告知オーバーレイ -->
         <div id="side-news-overlay">
