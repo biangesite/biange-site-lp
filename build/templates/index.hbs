@@ -100,6 +100,7 @@
                 {{/if}}
                 
                 <!-- 演奏者情報 -->
+                {{!-- 一時的にコメントアウト（権利確認中）
                 {{#if latestLive.livePerformers}}
                 <div class="performers-section">
                     <h4>演奏者</h4>
@@ -121,7 +122,7 @@
                         {{/each}}
                     </div>
                 </div>
-                {{/if}}
+                {{/if}}  --}}
             </div>
         </div>
         {{else}}
@@ -467,6 +468,7 @@
         <p style="text-align: center; margin-bottom: 20px;">{{{nl2br latestLive.overlayDetails}}}</p>
         {{/if}}
 
+{{!-- 一時的にコメントアウト（権利確認中）
         <div class="modal-flyer-dual">
             <div class="flyer-side">
                 <img src="{{latestLive.liveFlyer1.url}}" alt="ライブフライヤー 表面" class="live-flyer">
@@ -479,7 +481,7 @@
             </div>
             {{/if}}
         </div>
-
+--}}
         {{#if latestLive.pdfFileUrl}}
         <p class="future-note pdf-link-note">
             <a href="{{latestLive.pdfFileUrl}}" target="_blank">
