@@ -27,7 +27,7 @@
                     <li><a href="#lesson" onclick="closeNav()">LESSON</a></li>
                     <li><a href="#profile" onclick="closeNav()">PROFILE</a></li>
                     <li><a href="#contact" onclick="closeNav()">CONTACT</a></li>
-                    <li><a href="#gallery" onclick="closeNav()">GALLERY</a></li>
+                    <li><a href="#" class="disabled-link" onclick="return false;">GALLERY</a></li>
                 </ul>
             </nav>
         </header>
@@ -342,10 +342,10 @@
 
 <section id="gallery" class="content-section" data-aos="fade-up">
     <h2>GALLERY</h2>
-    <p class="gallery-intro-text">
-        日々、忙しく激烈なお仕事で疲労されても二胡の音色で癒されるでしょう。休日をゆったりと演奏するのもアリかなと思います。また、人生100年時代、リタイア後の楽しみに今から準備されてはいかがでしょう？ 既にリタイアされた方は今からでも遅くないですよ。
+    <p class="gallery-intro-text" style="text-align: center; padding: 40px 0;">
+        ギャラリーは準備中です。しばらくお待ちください。
     </p>
-    
+    {{!-- GALLERYセクション（権利確認のため一時非表示）
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openGalleryModal(0)">
             <img src="./images/gallery_portrait_001.jpg" alt="2024年春 すみだトリフォニー公演より">
@@ -400,6 +400,7 @@
             <div class="gallery-caption">アーティスト写真13</div>
         </div>
     </div>
+    --}}
 </section>
 
 <!-- ギャラリーモーダル -->
