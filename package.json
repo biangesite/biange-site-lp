@@ -7,13 +7,18 @@
     "build": "node build/generate.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["erhu", "music", "static-site"],
+  "keywords": [
+    "erhu",
+    "music",
+    "static-site"
+  ],
   "author": "",
   "license": "ISC",
   "engines": {
     "node": "18.17.1"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "handlebars": "^4.7.7",
     "node-fetch": "^2.7.0"
   }
