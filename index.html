@@ -55,11 +55,11 @@
                 <div class="news-accordion">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-1')">
                         <span class="news-category news-category--other">メンテナンス</span>
-                        <p class="news-item">2025.10.18　サイトメンテナンスのお知らせ🔧👷</p>
+                        <p class="news-item">2025.10.18　🛠️👷🏻⚠️メンテナンスのお知らせ🚧👷</p>
                         <span class="accordion-icon">+</span>
                     </div>
                     <div id="news-detail-1" class="news-item-detail" style="">
-                        現在、サイトのメンテナンスを実施しております。作業内容：Newsコンテンツの調整。※メンテナンス中は全ての機能をご利用いただけません。
+                        メンテナンスは終了しました。作業内容：Newsコンテンツの表示修正。
                     </div>
                 </div>
                 <div class="news-accordion">
@@ -141,6 +141,60 @@
                     </div>
                 
                 <!-- 演奏者情報 -->
+                <div class="performers-section">
+                    <h4>演奏者</h4>
+                    <div class="performers-grid">
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/4d2e8526b4ff410c86a22cac5b33e1d2/bian_ge_erhu.jpg" alt="BIAN GE">
+                            <p class="performer-name">BIAN GE</p>
+                            <p class="performer-part">
+                                    Erhu
+                            </p>
+                        </div>
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/aadd5f1829424a0db1acb067d2d2a2fd/okonogi_hachiro_jazz_singer.jpg" alt="小此木 八郎">
+                            <p class="performer-name">小此木 八郎</p>
+                            <p class="performer-part">
+                                    Special guest, Jazz, Singer
+                            </p>
+                        </div>
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/ab47ab81ebf34edd8d8de34a986039ce/kaku_shizuka_singer.jpg" alt="郭静">
+                            <p class="performer-name">郭静</p>
+                            <p class="performer-part">
+                                    Singer, Special guest
+                            </p>
+                        </div>
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/2b8bd00eed6e47f78957274cb6600fa7/nagashima_hiroshi_guitar.jpg" alt="永島 広">
+                            <p class="performer-name">永島 広</p>
+                            <p class="performer-part">
+                                    Guitar
+                            </p>
+                        </div>
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/98e5a8929b1b4f728cfe7bfa164f51ae/wang_xiao_feng_mc_erhu.jpg" alt="王 霄峰">
+                            <p class="performer-name">王 霄峰</p>
+                            <p class="performer-part">
+                                    MC, Erhu
+                            </p>
+                        </div>
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/30731fe724e74417998873529dfb61d9/manami_ito_piano.jpg" alt="伊藤 愛美">
+                            <p class="performer-name">伊藤 愛美</p>
+                            <p class="performer-part">
+                                    Piano
+                            </p>
+                        </div>
+                        <div class="performer-card">
+                            <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/a9ee1c7a132a4d76b19527432656ee86/ai_ayase_cello.jpg" alt="ｉ Ａｙａｋｏ">
+                            <p class="performer-name">ｉ Ａｙａｋｏ</p>
+                            <p class="performer-part">
+                                    Cello
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -357,9 +411,60 @@
 
 <section id="gallery" class="content-section" data-aos="fade-up">
     <h2>GALLERY</h2>
-    <p class="gallery-intro-text" style="text-align: center; padding: 40px 0;">
-        ギャラリーは準備中です。しばらくお待ちください。
-    </p>
+    <div class="gallery-grid">
+        <div class="gallery-item" onclick="openGalleryModal(0)">
+            <img src="./images/gallery_portrait_001.jpg" alt="2024年春 すみだトリフォニー公演より">
+            <div class="gallery-caption">2024年春 すみだトリフォニー公演より</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(1)">
+            <img src="./images/gallery_portrait_002.jpg" alt="リハーサル風景">
+            <div class="gallery-caption">リハーサル風景</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(2)">
+            <img src="./images/gallery_portrait_003.jpg" alt="ステージ演奏中">
+            <div class="gallery-caption">ステージ演奏中</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(3)">
+            <img src="./images/gallery_portrait_004.jpg" alt="アーティスト写真4">
+            <div class="gallery-caption">アーティスト写真4</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(4)">
+            <img src="./images/gallery_portrait_005.jpg" alt="アーティスト写真5">
+            <div class="gallery-caption">アーティスト写真5</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(5)">
+            <img src="./images/gallery_portrait_006.jpg" alt="アーティスト写真6">
+            <div class="gallery-caption">アーティスト写真6</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(6)">
+            <img src="./images/gallery_portrait_007.jpg" alt="アーティスト写真7">
+            <div class="gallery-caption">アーティスト写真7</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(7)">
+            <img src="./images/gallery_portrait_008.jpg" alt="アーティスト写真8">
+            <div class="gallery-caption">アーティスト写真8</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(8)">
+            <img src="./images/gallery_portrait_009.jpg" alt="アーティスト写真9">
+            <div class="gallery-caption">アーティスト写真9</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(9)">
+            <img src="./images/gallery_portrait_010.jpg" alt="アーティスト写真10">
+            <div class="gallery-caption">アーティスト写真10</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(10)">
+            <img src="./images/gallery_portrait_011.jpg" alt="アーティスト写真11">
+            <div class="gallery-caption">アーティスト写真11</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(11)">
+            <img src="./images/gallery_portrait_012.jpg" alt="アーティスト写真12">
+            <div class="gallery-caption">アーティスト写真12</div>
+        </div>
+        <div class="gallery-item" onclick="openGalleryModal(12)">
+            <img src="./images/gallery_portrait_013.jpg" alt="アーティスト写真13">
+            <div class="gallery-caption">アーティスト写真13</div>
+        </div>
+    </div>
 </section>
 
 <!-- ギャラリーモーダル -->
