@@ -431,6 +431,7 @@
     <div class="live-overlay-content">
         <span class="live-overlay-label">NEXT LIVE</span>
         <span class="live-overlay-date">{{formatDate latestLive.liveEventsDate}}</span>
+        <span class="live-overlay-title">{{latestLive.liveEventsTitle}}</span>
         <span class="live-overlay-venue">{{latestLive.venue}}</span>
         <span class="live-overlay-status">{{#if (isArray latestLive.ticketStatus)}}{{firstItem latestLive.ticketStatus}}{{else}}{{latestLive.ticketStatus}}{{/if}}</span>
     </div>
@@ -464,10 +465,14 @@
 <div id="live-detail-modal" onclick="toggleLiveModal(event)">
     <div class="modal-content live-card-modal" onclick="event.stopPropagation()">
         <button class="modal-close" onclick="toggleLiveModal()">×</button>
+        
+        <!-- ライブ基本情報 -->
+        <div class="modal-live-info">
+            <h3 class="modal-live-title">{{latestLive.liveEventsTitle}}</h3>
+            <p class="modal-live-date">{{formatDate latestLive.liveEventsDate}}</p>
+            <p class="modal-live-venue">{{latestLive.venue}}</p>
+        </div>
 
-        {{#if latestLive.overlayDetails}}
-        <p style="text-align: center; margin-bottom: 20px;">{{{nl2br latestLive.overlayDetails}}}</p>
-        {{/if}}
         <!-- LIVE詳細モーダル flyer1,2 両面表示-->
         <div class="modal-flyer-dual">
             <div class="flyer-side">
@@ -491,12 +496,11 @@
         {{/if}}
 
         <a href="#live" onclick="toggleLiveModal()">
-            <div class="reserve-button">{{latestLive.reserveButtonText}}</div>
+            <div class="reserve-button">{{latestLive.reserveButtonText}}</div> 
         </a>
     </div>
 </div>
 {{/if}}
-
     </div>
 
     <footer>

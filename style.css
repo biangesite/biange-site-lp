@@ -710,6 +710,47 @@ header nav a.disabled-link:hover {
     }
 }
 
+/* ライブオーバーレイ - タイトル表示対応 */
+.live-overlay-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin: 3px 0;
+    line-height: 1.4;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .live-overlay-title {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .live-overlay-title {
+        font-size: 10px;
+    }
+}
+
+/* ライブオーバーレイ - タイトル表示対応 
+   スマホや小型機種では会場名を非表示、文字サイズ調整 */
+@media (max-width: 768px) {
+    .live-overlay-venue {
+        display: none;
+    }
+}
+
+/* 小型スマホ（iPhone SE など）で追加調整 */
+@media (max-width: 390px) {
+    .live-overlay-title {
+        font-size: 12px;  /* タイトルも小さく */
+    }
+    
+    .live-overlay-date {
+        font-size: 13px;
+    }
+}
+
 /* ライブオーバーレイ内のライブチケット販売ステータスのテキスト（文字サイズ調整） */
 .live-overlay-status {
     font-size: 10px;  /* デフォルトより小さく */
@@ -919,6 +960,32 @@ header nav a.disabled-link:hover {
     cursor: pointer;
     z-index: 10;
     align-self: flex-end; 
+}
+
+/* モーダル内のライブ情報 */
+.modal-live-info {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(224, 180, 102, 0.3);
+}
+
+.modal-live-title {
+    font-size: 24px;
+    color: #e0b466;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.modal-live-date {
+    font-size: 18px;
+    color: #fff;
+    margin: 5px 0;
+}
+
+.modal-live-venue {
+    font-size: 16px;
+    color: #ccc;
+    margin: 5px 0;
 }
 
 .modal-flyer-dual {

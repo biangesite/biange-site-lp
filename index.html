@@ -45,7 +45,7 @@
                 <div class="news-accordion">
                     <div class="news-item-header" onclick="toggleAccordion('news-detail-0')">
                         <span class="news-category news-category--event">イベント</span>
-                        <p class="news-item">2025.10.19　👻🌙🐈‍⬛🐾🎃Hallowe&#x27;en 2025🎃🕷️🕸️🦇👻</p>
+                        <p class="news-item">2025.10.19　👻🌙🎃Hallowe&#x27;en 2025🎃🌙👻</p>
                         <span class="accordion-icon">+</span>
                     </div>
                     <div id="news-detail-0" class="news-item-detail" style="">
@@ -121,7 +121,7 @@
         <div class="live-event-featured">
             <!-- フライヤー画像（上部） -->
             <div class="live-featured-image">
-                <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/d3996e300e254ed5a2402962dd4e8af1/live_flyer1_temp.jpg" alt="BIAN GE 初夏の彩コンサート 2025">
+                <img src="https://images.microcms-assets.io/assets/467b096e66f842379bd3cfb39acd52a0/d3996e300e254ed5a2402962dd4e8af1/live_flyer1_temp.jpg" alt="BIAN GE 初夏の彩コンサート 2026">
             </div>
             
             <!-- ライブ詳細情報 -->
@@ -129,7 +129,7 @@
                 <span class="ticket-badge ticket-badge--前売り">
                     🔴チケット準備中
                 </span>
-                <h3>2026.05.15　BIAN GE 初夏の彩コンサート 2025</h3>
+                <h3>2026.05.15　BIAN GE 初夏の彩コンサート 2026</h3>
                 <p>すみだトリフォニー 小ホール</p>
                 <p>開場 18:00 / 開演 18:30</p>
                 <p>前売 ¥5,000 / 当日 ¥6,000</p>
@@ -383,6 +383,7 @@
     <div class="live-overlay-content">
         <span class="live-overlay-label">NEXT LIVE</span>
         <span class="live-overlay-date">2026.05.15</span>
+        <span class="live-overlay-title">BIAN GE 初夏の彩コンサート 2026</span>
         <span class="live-overlay-venue">すみだトリフォニー 小ホール</span>
         <span class="live-overlay-status">🔴チケット準備中</span>
     </div>
@@ -414,8 +415,14 @@
 <div id="live-detail-modal" onclick="toggleLiveModal(event)">
     <div class="modal-content live-card-modal" onclick="event.stopPropagation()">
         <button class="modal-close" onclick="toggleLiveModal()">×</button>
+        
+        <!-- ライブ基本情報 -->
+        <div class="modal-live-info">
+            <h3 class="modal-live-title">BIAN GE 初夏の彩コンサート 2026</h3>
+            <p class="modal-live-date">2026.05.15</p>
+            <p class="modal-live-venue">すみだトリフォニー 小ホール</p>
+        </div>
 
-        <p style="text-align: center; margin-bottom: 20px;">2026年5月15日(金) に、すみだトリフォニー 小ホールにて、BIAN GE 初夏の彩コンサートを開催します。<br>二胡が奏でる、優雅で情感豊かな音の世界へようこそ。<br>心に響く旋律とともに、特別なひとときをお楽しみください。</p>
         <!-- LIVE詳細モーダル flyer1,2 両面表示-->
         <div class="modal-flyer-dual">
             <div class="flyer-side">
@@ -435,11 +442,10 @@
         </p>
 
         <a href="#live" onclick="toggleLiveModal()">
-            <div class="reserve-button">チケットを予約する</div>
+            <div class="reserve-button">チケットを予約する</div> 
         </a>
     </div>
 </div>
-
     </div>
 
     <footer>
