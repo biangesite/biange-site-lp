@@ -115,6 +115,17 @@ header nav a:hover {
     display: none; 
 }
 
+/* 無効化されたナビゲーションリンク */
+header nav a.disabled-link {
+    color: #666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+header nav a.disabled-link:hover {
+    color: #666 !important;
+}
 /* ==========================================================
  * 5. セクションの共通設定とTOPセクション
  * ========================================================== */
@@ -568,8 +579,8 @@ header nav a:hover {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    border: 1px solid none;
 }
 
 .contact-form-skeleton label {
@@ -697,6 +708,11 @@ header nav a:hover {
     100% {
         background-color: rgba(0, 0, 0, 0.5);
     }
+}
+
+/* ライブオーバーレイ内のライブチケット販売ステータスのテキスト（文字サイズ調整） */
+.live-overlay-status {
+    font-size: 10px;  /* デフォルトより小さく */
 }
 
 /* BGMコントロール（画面左下固定） */
@@ -1115,6 +1131,14 @@ footer {
  * 11. LESSONセクションのスタイル
  * ========================================================== */
 
+#lesson > h3 {
+    text-align: center;
+    font-size: 24px;
+    color: #e0b466;
+    margin: 40px auto 20px;
+    max-width: 800px;
+}
+
 .lesson-intro, .lesson-intro-sub {
     max-width: 800px;
     margin: 0 auto 20px;
@@ -1275,8 +1299,8 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    border: 1px solid none;
 }
 
 .profile-container h3 {
@@ -2043,18 +2067,6 @@ body.no-scroll {
         width: 100%;
         max-width: 200px;
         margin: 0 auto;
-    }
-    
-    /* フォーム */
-    .contact-form-skeleton {
-        padding: 15px;
-    }
-    
-    .contact-form-skeleton input[type="text"],
-    .contact-form-skeleton input[type="email"],
-    .contact-form-skeleton textarea,
-    .contact-form-skeleton select {
-        font-size: 14px;
     }
     
     /* テーブル */

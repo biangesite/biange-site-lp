@@ -468,21 +468,20 @@
         {{#if latestLive.overlayDetails}}
         <p style="text-align: center; margin-bottom: 20px;">{{{nl2br latestLive.overlayDetails}}}</p>
         {{/if}}
-
-{{!-- 一時的にコメントアウト（権利確認中）
+        <!-- LIVE詳細モーダル flyer1,2 両面表示-->
         <div class="modal-flyer-dual">
             <div class="flyer-side">
                 <img src="{{latestLive.liveFlyer1.url}}" alt="ライブフライヤー 表面" class="live-flyer">
-                <p class="flyer-caption">詳細１</p>
+                <p class="flyer-caption"></p>
             </div>
             {{#if latestLive.liveFlyer2}}
             <div class="flyer-side">
                 <img src="{{latestLive.liveFlyer2.url}}" alt="ライブフライヤー 裏面" class="live-flyer">
-                <p class="flyer-caption">詳細２</p>
+                <p class="flyer-caption"></p>
             </div>
             {{/if}}
         </div>
---}}
+
         {{#if latestLive.pdfFileUrl}}
         <p class="future-note pdf-link-note">
             <a href="{{latestLive.pdfFileUrl}}" target="_blank">
