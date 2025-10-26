@@ -33,10 +33,17 @@
         </header>
 
         <section id="top" class="full-height-section">
-            <h1 class="key-title" data-aos="fade-up" data-aos-duration="2000" style="{{applyStyle keyTitleStyle 'keyTitle'}}">
-                {{keyTitle}}
-                <span class="artist-name" style="{{applyStyle artistNameStyle 'artistName'}}">{{artistName}}</span>
-            </h1>
+            <div class="key-visual-text">
+                {{#unless (includes keyTitleStyle 'hidden')}}
+                <h1 class="key-title" data-aos="fade-up" data-aos-duration="2000" style="{{applyStyle keyTitleStyle 'keyTitle'}}">
+                    {{keyTitle}}
+                </h1>
+                {{/unless}}
+                
+                {{#unless (includes artistNameStyle 'hidden')}}
+                <span class="artist-name" data-aos="fade-up" data-aos-duration="2000" style="{{applyStyle artistNameStyle 'artistName'}}">{{artistName}}</span>
+                {{/unless}}
+            </div>
         </section>
 
         <section id="news" class="content-section" data-aos="fade-up">
@@ -330,7 +337,7 @@
                 <textarea id="contact-message" name="message" rows="5" required></textarea>
 
                 <p class="response-note">
-                    ライブイベントや出演スケジュールの都合上、返信に時間がかかる場合がございます。ご了承ください。
+                    ライブイベントや出演スケジュールの都合で、返信に時間がかかる場合がございます。ご了承ください。
                 </p>
 
                 <button type="submit" id="submit-button">送信</button>
@@ -349,55 +356,55 @@
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openGalleryModal(0)">
             <img src="./images/gallery_portrait_001.jpg" alt="2024年春 すみだトリフォニー公演より">
-            <div class="gallery-caption">2024年春 すみだトリフォニー公演より</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(1)">
             <img src="./images/gallery_portrait_002.jpg" alt="リハーサル風景">
-            <div class="gallery-caption">リハーサル風景</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(2)">
             <img src="./images/gallery_portrait_003.jpg" alt="ステージ演奏中">
-            <div class="gallery-caption">ステージ演奏中</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(3)">
             <img src="./images/gallery_portrait_004.jpg" alt="アーティスト写真4">
-            <div class="gallery-caption">アーティスト写真4</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(4)">
             <img src="./images/gallery_portrait_005.jpg" alt="アーティスト写真5">
-            <div class="gallery-caption">アーティスト写真5</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(5)">
             <img src="./images/gallery_portrait_006.jpg" alt="アーティスト写真6">
-            <div class="gallery-caption">アーティスト写真6</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(6)">
             <img src="./images/gallery_portrait_007.jpg" alt="アーティスト写真7">
-            <div class="gallery-caption">アーティスト写真7</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(7)">
             <img src="./images/gallery_portrait_008.jpg" alt="アーティスト写真8">
-            <div class="gallery-caption">アーティスト写真8</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(8)">
             <img src="./images/gallery_portrait_009.jpg" alt="アーティスト写真9">
-            <div class="gallery-caption">アーティスト写真9</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(9)">
             <img src="./images/gallery_portrait_010.jpg" alt="アーティスト写真10">
-            <div class="gallery-caption">アーティスト写真10</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(10)">
             <img src="./images/gallery_portrait_011.jpg" alt="アーティスト写真11">
-            <div class="gallery-caption">アーティスト写真11</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(11)">
             <img src="./images/gallery_portrait_012.jpg" alt="アーティスト写真12">
-            <div class="gallery-caption">アーティスト写真12</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(12)">
             <img src="./images/gallery_portrait_013.jpg" alt="アーティスト写真13">
-            <div class="gallery-caption">アーティスト写真13</div>
+            <div class="gallery-caption">PHOTO</div>
         </div>
     </div>
 </section>
@@ -412,7 +419,7 @@
 </div>
 
         <!-- サイドNEWS告知オーバーレイ -->
-        <div id="side-news-overlay">
+        <div id="side-news-overlay" style="{{applyStyle sideOverlayTextStyle 'sideOverlay'}}">
          {{#if sideOverlayText}}
             <p>{{sideOverlayText}}</p>
          {{else if latestLive}}
@@ -421,9 +428,7 @@
             <p>🎵 最新情報をお待ちください</p>
          {{/if}}
         </div>
-            <p>{{liveOverlay.liveOverlayTitle}}</p>
-        </div>
-
+        
         <!-- LIVE情報トリガー -->
 {{#if latestLive}}
 <div id="live-info-overlay" onclick="toggleLiveModal()">

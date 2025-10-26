@@ -93,6 +93,13 @@ Handlebars.registerHelper('newsCategoryClass', function(category) {
   return classes[categoryValue] || 'news-category--other';
 });
 
+// 文字列に特定の文字が含まれているかチェック
+Handlebars.registerHelper('includes', function(str, search) {
+  if (Array.isArray(str)) {
+    str = str[0];
+  }
+  return str && str.includes(search);
+});
 // スタイルプリセットを適用
 Handlebars.registerHelper('applyStyle', function(styleName, type) {
   // 配列の場合は最初の要素を取得
@@ -130,6 +137,10 @@ Handlebars.registerHelper('applyStyle', function(styleName, type) {
     setList: {
       Standard: 'font-size: 14px; color: #cccccc;',
       Emphasis: 'font-size: 15px; color: #ffffff; font-weight: 500;'
+    },
+    sideOverlay: {
+      Standard: '',  // 既存のCSSを使用
+      Emphasis: ''
     }
   };
   
