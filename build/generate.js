@@ -95,6 +95,21 @@ Handlebars.registerHelper('newsCategoryClass', function(category) {
 
 // スタイルプリセットを適用
 Handlebars.registerHelper('applyStyle', function(styleName, type) {
+  // 配列の場合は最初の要素を取得
+  if (Array.isArray(styleName)) {
+    styleName = styleName[0];
+  }
+  
+  // 文字列に「hidden」が含まれていれば非表示
+  if (styleName && (styleName === 'hidden' || styleName.includes('hidden') || styleName.includes('非表示'))) {
+    return 'display: none;';
+  }
+  
+  // 「visible」または「表示」が含まれていればStandard
+  if (!styleName || styleName === 'visible' || styleName.includes('visible') || styleName.includes('表示')) {
+    styleName = 'Standard';
+  }
+  
   const styles = {
     keyTitle: {
       Standard: 'font-size: 60px; color: rgba(255, 255, 255, 0.8);',
