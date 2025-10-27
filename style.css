@@ -1889,13 +1889,13 @@ body.no-scroll {
     
     /* キータイトルのフォントサイズを縮小 */
     .key-title {
-        font-size: 36px; /* 60px → 36px */
+        font-size: 36px !important; /* 60px → 36px */
         line-height: 1.4;
         padding: 0 20px; /* 左右の余白も確保 */
     }
     
     .artist-name {
-        font-size: 24px; /* 36px → 24px */
+        font-size: 24px !important; /* 36px → 24px */
         margin-top: 8px;
         letter-spacing: 0.15em;
     }
@@ -2067,13 +2067,13 @@ body.no-scroll {
     
     /* キータイトル（小型端末用） */
     .key-title {
-        font-size: 28px; /* 36px → 28px */
+        font-size: 28px !important; /* 36px → 28px */
         padding: 0 15px;
         line-height: 1.5;
     }
     
     .artist-name {
-        font-size: 20px; /* 24px → 20px */
+        font-size: 20px !important; /* 24px → 20px */
         margin-top: 6px;
         letter-spacing: 0.1em;
     }
