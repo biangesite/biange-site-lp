@@ -27,7 +27,7 @@
                     <li><a href="#lesson" onclick="closeNav()">LESSON</a></li>
                     <li><a href="#profile" onclick="closeNav()">PROFILE</a></li>
                     <li><a href="#contact" onclick="closeNav()">CONTACT</a></li>
-                    <li><a href="#" class="disabled-link" onclick="return false;">GALLERY</a></li>
+                    <li><a href="#gallery" onclick="closeNav()">GALLERY</a></li>
                 </ul>
             </nav>
         </header>
@@ -138,63 +138,67 @@
 </section>
 
         <section id="lesson" class="content-section" data-aos="fade-up">
-            <h2>LESSON / WORKSHOP</h2>
-            
-            <p class="lesson-intro">ようこそ、心に響く二胡の世界へ</p>
-            <p class="lesson-intro-sub">ビェンカ二胡教室では、初心者の方から経験者の方まで、一人ひとりのレベルに合わせた丁寧な指導を行っております。美しい音色を奏でながら、心豊かな時間を一緒に楽しみましょう。</p>
-
-            <div class="info-cards-container">
-                <div class="info-card special-offer-card">
-                    <h3>体験レッスン受付中！</h3>
-                    <p>期間限定で**30分無料体験レッスン**を実施中です！</p>
-                    <p>まずはお気軽に二胡の魅力を感じてみませんか？</p>
-                </div>
-                <div class="info-card discount-card">
-                    <h3>お得な一括払い割引</h3>
-                    <p>全てのレッスンにおいて、**6ヶ月分を一括払い**していただくと、</p>
-                    <p>レッスン代が**10%OFF**になります！継続的な学びをお得にサポート。</p>
-                </div>
-            </div>
-
-            <h3>レッスン料金</h3>
-            <div class="price-table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>項目</th>
-                            <th>詳細</th>
-                            <th>料金</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>入会金</td>
-                            <td>-</td>
-                            <td>15,000円</td>
-                        </tr>
-                        <tr>
-                            <td>グループレッスン（3～5名）</td>
-                            <td>90分 / 月2回</td>
-                            <td>月謝 12,000円</td>
-                        </tr>
-                        <tr>
-                            <td>マンツーマンレッスン（対面）</td>
-                            <td>調整中</td>
-                            <td>調整中</td>
-                        </tr>
-                        <tr>
-                            <td>ペアレッスン（2名）</td>
-                            <td>調整中</td>
-                            <td>調整中</td>
-                        </tr>
-                        <tr>
-                            <td>マンツーマンオンラインレッスン</td>
-                            <td>調整中</td>
-                            <td>調整中</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <h2>{{lesson.lessonKeyTitle}}</h2>
+    
+    <!-- レッスン風景画像 -->
+    {{#if lesson.lessonImage1}}
+    <div class="lesson-images">
+        <img src="{{lesson.lessonImage1.url}}" alt="レッスン風景1" class="lesson-image">
+        {{#if lesson.lessonImage2}}
+        <img src="{{lesson.lessonImage2.url}}" alt="レッスン風景2" class="lesson-image">
+        {{/if}}
+        {{#if lesson.lessonImage3}}
+        <img src="{{lesson.lessonImage3.url}}" alt="レッスン風景3" class="lesson-image">
+        {{/if}}
+    </div>
+    {{/if}}
+    
+    <p class="lesson-intro-text">{{{nl2br lesson.lessonInfoText}}}</p>
+    
+    <!-- 特典カード -->
+    {{#if lesson.specialOfferTitle}}
+    <div class="info-cards-container">
+        <div class="info-card special-offer-card">
+            <h3>{{lesson.specialOfferTitle}}</h3>
+            <p>{{{nl2br lesson.specialOfferText}}}</p>
+        </div>
+        {{#if lesson.discountTitle}}
+        <div class="info-card discount-card">
+            <h3>{{lesson.discountTitle}}</h3>
+            <p>{{{nl2br lesson.discountText}}}</p>
+        </div>
+        {{/if}}
+    </div>
+    {{/if}}
+    
+    <!-- 料金表 -->
+    {{#if lesson.buildLesson}}
+    <h3>レッスン料金</h3>
+    <div class="price-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>項目</th>
+                    <th>詳細</th>
+                    <th>料金</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each lesson.buildLesson}}
+                {{#if isVisible}}
+                <tr>
+                    <td>{{itemName}}</td>
+                    <td>{{itemDetail}}</td>
+                    <td>{{itemPrice}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{/if}}
+    
+    <!-- 既存のキャンセルポリシー等はそのまま残す -->
 
             <h3>レッスン規約・サポート</h3>
             <div class="lesson-details-container">
@@ -355,15 +359,15 @@
     --}}
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openGalleryModal(0)">
-            <img src="./images/gallery_portrait_001.jpg" alt="2024年春 すみだトリフォニー公演より">
+            <img src="./images/gallery_portrait_001.jpg" alt="アーティスト写真1">
             <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(1)">
-            <img src="./images/gallery_portrait_002.jpg" alt="リハーサル風景">
+            <img src="./images/gallery_portrait_002.jpg" alt="アーティスト写真2">
             <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(2)">
-            <img src="./images/gallery_portrait_003.jpg" alt="ステージ演奏中">
+            <img src="./images/gallery_portrait_003.jpg" alt="アーティスト写真3">
             <div class="gallery-caption">PHOTO</div>
         </div>
         <div class="gallery-item" onclick="openGalleryModal(3)">

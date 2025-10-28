@@ -164,10 +164,11 @@ async function generateHTML() {
     console.log('');
     
     // コンテンツデータの取得
-    const [siteContent, newsResponse, liveResponse] = await Promise.all([
+    const [siteContent, newsResponse, liveResponse, lessonData] = await Promise.all([
       fetchFromMicroCMS('bgsitecontent'),
       fetchFromMicroCMS('news?orders=-newsDate&limit=10'),
-      fetchFromMicroCMS('live?orders=-liveEventsDate&limit=10')
+      fetchFromMicroCMS('live?orders=-liveEventsDate&limit=10'),
+      fetchFromMicroCMS('lessonetc')
     ]);
         // ↓↓↓  liveResponseのデータの詳細をデバッグ出力 ↓↓↓
     console.log('');
@@ -179,6 +180,8 @@ async function generateHTML() {
     console.log('✅ Data fetched successfully');
     console.log('🔍 DEBUG: siteContent:');
     console.log(JSON.stringify(siteContent, null, 2));
+    console.log('📚 LESSON Data:');
+    console.log(JSON.stringify(lessonData, null, 2));
     console.log('');
     
     // NEWS
@@ -217,7 +220,8 @@ async function generateHTML() {
       ...siteContent,
       news: newsItems,
       liveEvents: liveItems,
-      latestLive: latestLive
+      latestLive: latestLive,
+      lesson: lessonData
     };
     
     // データ構造確認（デバッグ用）
@@ -229,6 +233,7 @@ async function generateHTML() {
     console.log(`  - liveEvents: ${data.liveEvents ? data.liveEvents.length + ' items' : '✗'}`);
     console.log(`  - latestLive: ${data.latestLive ? '✓' : '✗'}`);
     console.log(`  - liveOverlay: ${data.liveOverlay ? '✓' : '✗'}`);
+    console.log(`  - lesson: ${data.lesson ? '✓' : '✗'}`);
     console.log('');
 
     // テンプレートロード

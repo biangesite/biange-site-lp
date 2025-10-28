@@ -1235,6 +1235,58 @@ footer {
     margin-bottom: 5px;
 }
 
+/* ==========================================================
+ * LESSON画像セクション
+ * ========================================================== */
+.lesson-images {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.lesson-image {
+    width: calc(33.33% - 10px);
+    min-width: 250px;
+    max-width: 320px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.lesson-image:hover {
+    transform: scale(1.05);
+}
+
+.lesson-intro-text {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .lesson-images {
+        gap: 10px;
+    }
+    
+    .lesson-image {
+        width: calc(50% - 5px);
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson-image {
+        width: 100%;
+    }
+}
+
 .info-cards-container {
     display: flex;
     justify-content: center;
