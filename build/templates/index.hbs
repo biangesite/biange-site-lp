@@ -49,19 +49,19 @@
         <section id="news" class="content-section" data-aos="fade-up">
             <h2>NEWS UPDATES</h2>
             <div id="news-list">
-                {{#each news}}
-                <div class="news-accordion">
-                    <div class="news-item-header" onclick="toggleAccordion('news-detail-{{@index}}')">
-                        <span class="news-category {{newsCategoryClass newsCategory}}">{{#if (isArray newsCategory)}}{{firstItem newsCategory}}{{else}}{{newsCategory}}{{/if}}</span>
-                        <p class="news-item">{{formatDate newsDate}}　{{newsTitle}}</p>
-                        <span class="accordion-icon">+</span>
-                    </div>
-                    <div id="news-detail-{{@index}}" class="news-item-detail" style="{{applyStyle newsDetailStyle 'newsDetail'}}">
-                        {{{nl2br newsDetail}}}
-                    </div>
-                </div>
-                {{/each}}
+{{#each news}}
+        <div class="news-accordion accordion-no-border">
+            <div class="news-item-header" onclick="toggleAccordion('news-detail-{{@index}}')">
+                <span class="news-category {{newsCategoryClass newsCategory}}">{{#if (isArray newsCategory)}}{{firstItem newsCategory}}{{else}}{{newsCategory}}{{/if}}</span>
+                <p class="news-item">{{formatDate newsDate}}　{{newsTitle}}</p>
+                <span class="accordion-icon">▼</span>
             </div>
+            <div id="news-detail-{{@index}}" class="news-item-detail" style="{{applyStyle newsDetailStyle 'newsDetail'}}">
+                {{{nl2br newsDetail}}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
         </section>
 
 <section id="live" class="content-section" data-aos="fade-up">
@@ -173,63 +173,63 @@
     
     <!-- 料金表 -->
     {{#if lesson.buildLesson}}
-    <h3>レッスン料金</h3>
-    <div class="price-table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>項目</th>
-                    <th>詳細</th>
-                    <th>料金</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each lesson.buildLesson}}
-                {{#if isVisible}}
-                <tr>
-                    <td>{{itemName}}</td>
-                    <td>{{itemDetail}}</td>
-                    <td>{{itemPrice}}</td>
-                </tr>
-                {{/if}}
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+<h3>レッスン料金</h3>
+<div class="price-table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>詳細</th>
+                <th>料金</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each lesson.buildLesson}}
+            {{#if isVisible}}
+            <tr>
+                <td>{{itemName}}</td>
+                <td>{{itemDetail}}</td>
+                <td>{{itemPrice}}</td>
+            </tr>
+            {{/if}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>
     {{/if}}
     
     <!-- 既存のキャンセルポリシー等はそのまま残す -->
 
             <h3>レッスン規約・サポート</h3>
-            <div class="lesson-details-container">
-                
-                <div class="news-accordion">
-                    <div class="news-item-header" onclick="toggleAccordion('lesson-detail-cancel')">
-                        <p class="news-item">キャンセルポリシー</p>
-                        <span class="accordion-icon">+</span>
-                    </div>
-                    <div id="lesson-detail-cancel" class="news-item-detail">
-                        <p class="detail-policy">• レッスン当日のキャンセル：受講料の **100%** をご請求させていただきます。</p>
-                        <p class="detail-policy">• 前日のキャンセル：受講料の **50%** をご請求させていただきます。</p>
-                        <p class="detail-note">※スケジュールの変更がある場合は、できるだけお早めにご連絡ください。</p>
-                    </div>
-                </div>
+<div class="lesson-details-container">
+    
+    <div class="news-accordion accordion-no-border">
+        <div class="news-item-header" onclick="toggleAccordion('lesson-detail-cancel')">
+            <p class="news-item">キャンセルポリシー</p>
+            <span class="accordion-icon">▼</span>
+        </div>
+        <div id="lesson-detail-cancel" class="news-item-detail">
+            <p class="detail-policy">• レッスン当日のキャンセル：受講料の **100%** をご請求させていただきます。</p>
+            <p class="detail-policy">• 前日のキャンセル：受講料の **50%** をご請求させていただきます。</p>
+            <p class="detail-note">※スケジュールの変更がある場合は、できるだけお早めにご連絡ください。</p>
+        </div>
+    </div>
 
-                <div class="news-accordion">
-                    <div class="news-item-header" onclick="toggleAccordion('lesson-detail-rental')">
-                        <p class="news-item">二胡レンタル・購入サポート</p>
-                        <span class="accordion-icon">+</span>
-                    </div>
-                    <div id="lesson-detail-rental" class="news-item-detail">
-                        <h4>二胡のレンタル</h4>
-                        <p class="detail-rental-price">• レンタル料：1回 **1,000円**</p>
-                        <p class="detail-note">• 特徴：手ぶらで気軽にレッスンを受講できます。</p>
-                        <h4 class="mt-15">二胡のご購入サポート</h4>
-                        <p class="detail-policy">• ご希望に合わせて、品質の良い二胡をお取り寄せいたします。</p>
-                        <p class="detail-policy">• 初心者向けから上級者向けまで、最適な一台をご提案いたします。</p>
-                    </div>
-                </div>
-            </div>
+    <div class="news-accordion accordion-no-border">
+        <div class="news-item-header" onclick="toggleAccordion('lesson-detail-rental')">
+            <p class="news-item">二胡レンタル・購入サポート</p>
+            <span class="accordion-icon">▼</span>
+        </div>
+        <div id="lesson-detail-rental" class="news-item-detail">
+            <h4>二胡のレンタル</h4>
+            <p class="detail-rental-price">• レンタル料：1回 **1,000円**</p>
+            <p class="detail-note">• 特徴：手ぶらで気軽にレッスンを受講できます。</p>
+            <h4 class="mt-15">二胡のご購入サポート</h4>
+            <p class="detail-policy">• ご希望に合わせて、品質の良い二胡をお取り寄せいたします。</p>
+            <p class="detail-policy">• 初心者向けから上級者向けまで、最適な一台をご提案いたします。</p>
+        </div>
+    </div>
+</div>
 
             <div class="lesson-contact-info">
                 <h3>お問い合わせ先</h3>

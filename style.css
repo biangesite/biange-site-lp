@@ -1349,6 +1349,56 @@ footer {
 .price-table-container td {
     background-color: rgba(0, 0, 0, 0.6);
 }
+/* レッスン料金テーブル（改善版） */
+.price-table-container {
+    max-width: 700px;
+    margin: 30px auto 50px;
+}
+
+.price-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.price-table-container th, .price-table-container td {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-size: 15px;
+}
+
+.price-table-container th {
+    background-color: rgba(224, 180, 102, 0.3);
+    color: #fff;
+    font-weight: bold;
+}
+
+.price-table-container td {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* ホバー効果 */
+.price-table-container tbody tr:hover td {
+    background-color: rgba(224, 180, 102, 0.15);
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .price-table-container th, 
+    .price-table-container td {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .price-table-container th, 
+    .price-table-container td {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+}
 
 .lesson-details-container {
     max-width: 600px;
@@ -1363,17 +1413,35 @@ footer {
 }
 
 .lesson-details-container .news-accordion {
-    border-color: rgba(255, 255, 255, 0.2);
-    margin-bottom: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.15);  /* 線を薄く */
+    margin-bottom: 8px;
+    background-color: rgba(255, 255, 255, 0.02);  /* 背景を薄く */
 }
 
 .lesson-details-container .news-item-header {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);  /* 暗めに */
+    padding: 12px 20px;  /* パディングを小さく */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);  /* 線を薄く */
 }
 
 .lesson-details-container .news-item {
-    font-weight: bold;
-    color: #fff;
+    font-weight: 500;  /* bold → 500 に軽く */
+    color: #ccc;  /* #fff → #ccc に落ち着いた色 */
+    font-size: 15px;
+}
+
+.lesson-details-container .accordion-icon {
+    font-size: 18px;  /* 20px → 18px に小さく */
+    color: #999;  /* #e0b466 → #999 に控えめに */
+    transition: transform 0.3s, color 0.3s;
+}
+
+.lesson-details-container .news-accordion:hover .accordion-icon {
+    color: #e0b466;  /* ホバー時だけ色が変わる */
+}
+
+.lesson-details-container .news-accordion.open .accordion-icon {
+    color: #e0b466;
 }
 
 .lesson-details-container .detail-price {
@@ -1399,6 +1467,51 @@ footer {
 
 .lesson-details-container .mt-15 {
     margin-top: 15px;
+}
+
+/* 枠線なしアコーディオン */
+.accordion-no-border {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background-color: transparent !important;
+    margin-bottom: 0 !important;
+}
+
+.accordion-no-border .news-item-header {
+    background-color: transparent !important;
+    border-bottom: none !important;
+    padding: 15px 0 !important;
+}
+
+.accordion-no-border .news-item-header:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* 下向き矢印アイコン */
+.accordion-no-border .accordion-icon {
+    font-size: 14px !important;
+    color: #999 !important;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease, color 0.3s;
+}
+
+.accordion-no-border:hover .accordion-icon {
+    color: #e0b466 !important;
+}
+
+.accordion-no-border.open .accordion-icon {
+    transform: rotate(180deg) !important;  /* 上向きに回転 */
+    color: #e0b466 !important;
+}
+
+/* NEWSセクション用の調整 */
+#news .accordion-no-border {
+    max-width: 800px;  /* 幅を広げる */
+    margin: 0 auto;
+}
+
+#news .accordion-no-border .news-item-header {
+    padding: 15px 20px !important;  /* 左右の余白を確保 */
 }
 
 .lesson-contact-info {
