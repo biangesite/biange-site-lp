@@ -200,35 +200,25 @@
     
     <!-- 既存のキャンセルポリシー等はそのまま残す -->
 
-            <h3>レッスン規約・サポート</h3>
+<h3>レッスン規約・サポート</h3>
 <div class="lesson-details-container">
-    
-    <div class="news-accordion accordion-no-border">
-        <div class="news-item-header" onclick="toggleAccordion('lesson-detail-cancel')">
-            <p class="news-item">キャンセルポリシー</p>
-            <span class="accordion-icon">▼</span>
-        </div>
-        <div id="lesson-detail-cancel" class="news-item-detail">
-            <p class="detail-policy">• レッスン当日のキャンセル：受講料の **100%** をご請求させていただきます。</p>
-            <p class="detail-policy">• 前日のキャンセル：受講料の **50%** をご請求させていただきます。</p>
-            <p class="detail-note">※スケジュールの変更がある場合は、できるだけお早めにご連絡ください。</p>
-        </div>
-    </div>
-
-    <div class="news-accordion accordion-no-border">
-        <div class="news-item-header" onclick="toggleAccordion('lesson-detail-rental')">
-            <p class="news-item">二胡レンタル・購入サポート</p>
-            <span class="accordion-icon">▼</span>
-        </div>
-        <div id="lesson-detail-rental" class="news-item-detail">
-            <h4>二胡のレンタル</h4>
-            <p class="detail-rental-price">• レンタル料：1回 **1,000円**</p>
-            <p class="detail-note">• 特徴：手ぶらで気軽にレッスンを受講できます。</p>
-            <h4 class="mt-15">二胡のご購入サポート</h4>
-            <p class="detail-policy">• ご希望に合わせて、品質の良い二胡をお取り寄せいたします。</p>
-            <p class="detail-policy">• 初心者向けから上級者向けまで、最適な一台をご提案いたします。</p>
-        </div>
-    </div>
+    {{#if termsAndSupport}}
+        {{#each termsAndSupport}}
+            {{#if this.isVisible}}
+            <div class="news-accordion accordion-no-border">
+                <div class="news-item-header" onclick="toggleAccordion('terms-{{@index}}')">
+                    <p class="news-item">{{this.termsAndAidName}}</p>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div id="terms-{{@index}}" class="news-item-detail">
+                    {{{nl2br this.termsAndAidDetail}}}
+                </div>
+            </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        <p class="future-note">現在、規約・サポート情報はありません。</p>
+    {{/if}}
 </div>
 
             <div class="lesson-contact-info">

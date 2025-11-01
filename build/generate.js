@@ -216,12 +216,17 @@ async function generateHTML() {
     }
     console.log('');
 
+    console.log('📚 Lesson Data:');
+    console.log(JSON.stringify(lessonData, null, 2));
+    console.log('');
+
     const data = {
       ...siteContent,
       news: newsItems,
       liveEvents: liveItems,
       latestLive: latestLive,
-      lesson: lessonData
+      lesson: lessonData,
+      termsAndSupport: lessonData?.termsAndAid || []
     };
     
     // データ構造確認（デバッグ用）
@@ -234,6 +239,7 @@ async function generateHTML() {
     console.log(`  - latestLive: ${data.latestLive ? '✓' : '✗'}`);
     console.log(`  - liveOverlay: ${data.liveOverlay ? '✓' : '✗'}`);
     console.log(`  - lesson: ${data.lesson ? '✓' : '✗'}`);
+    console.log(`  - termsAndSupport: ${data.termsAndSupport ? data.termsAndSupport.length + ' items' : '✗'}`);
     console.log('');
 
     // テンプレートロード
