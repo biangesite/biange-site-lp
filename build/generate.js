@@ -149,6 +149,9 @@ Handlebars.registerHelper('applyStyle', function(styleName, type) {
 
 // チケットステータスのバッジクラスを返す
 Handlebars.registerHelper('ticketBadgeClass', function(status) {
+Handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+});
   const badges = {
     '完売': 'ticket-badge--完売',
     '前売り': 'ticket-badge--前売り',
