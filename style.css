@@ -55,6 +55,30 @@ body.no-scroll {
     background-repeat: no-repeat;
     
     filter: brightness(0.7); 
+    overflow: hidden;
+}
+
+
+
+/* 動画背景用のスタイル */
+#background-visual video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+/* 動きの軽減設定に対応 */
+@media (prefers-reduced-motion: reduce) {
+    #background-visual video {
+        display: none;
+    }
 }
 
 /* ==========================================================
