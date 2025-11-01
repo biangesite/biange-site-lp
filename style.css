@@ -49,11 +49,13 @@ body.no-scroll {
     height: 100vh;
     z-index: -1; 
     
+    /*
     background-image: url('./images/erhu_key_visual.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    
+    */
+
     filter: brightness(0.7); 
     overflow: hidden;
 }

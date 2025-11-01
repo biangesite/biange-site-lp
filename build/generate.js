@@ -149,15 +149,30 @@ Handlebars.registerHelper('applyStyle', function(styleName, type) {
 
 // チケットステータスのバッジクラスを返す
 Handlebars.registerHelper('ticketBadgeClass', function(status) {
-Handlebars.registerHelper('eq', function(a, b) {
-    return a === b;
-});
   const badges = {
     '完売': 'ticket-badge--完売',
     '前売り': 'ticket-badge--前売り',
     'お早めに': 'ticket-badge--お早めに'
   };
   return badges[status] || 'ticket-badge--前売り';
+});
+
+// 等価比較ヘルパー
+Handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+});
+
+// 配列の最初の要素を取得
+Handlebars.registerHelper('first', function(array) {
+    return Array.isArray(array) ? array[0] : array;
+});
+
+// 配列に特定の値が含まれるかチェック
+Handlebars.registerHelper('includes', function(array, value) {
+    if (Array.isArray(array)) {
+        return array.includes(value);
+    }
+    return array === value;
 });
 
 // メイン処理
@@ -173,6 +188,9 @@ async function generateHTML() {
       fetchFromMicroCMS('live?orders=-liveEventsDate&limit=10'),
       fetchFromMicroCMS('lessonetc')
     ]);
+    // ↓↓↓  JSONのデータの詳細をデバッグ出力 ↓↓↓
+    console.log('🔍 bgsitecontent data:', JSON.stringify(siteContent, null, 2));
+
         // ↓↓↓  liveResponseのデータの詳細をデバッグ出力 ↓↓↓
     console.log('');
     console.log('🔍 DEBUG: liveResponse:');

@@ -11,15 +11,15 @@
 </head>
 <body>
 
-    {{#if keyVisualMovie}}
+{{#if (includes backgroundType "動画を使用")}}
     <div id="background-visual">
         <video autoplay muted loop playsinline preload="auto">
-            <source src="{{keyVisualMovie}}" type="video/mp4">
+            <source src="./public/videos/background.mp4" type="video/mp4">
         </video>
     </div>
-    {{else}}
-        <div id="background-visual" style="background-image: url('{{keyVisualImage.url}}');"></div>
-    {{/if}}
+{{else}}
+    <div id="background-visual" style="background-image: url('{{keyVisualImage.url}}');"></div>
+{{/if}}
 
     <div id="content-wrapper">
 
