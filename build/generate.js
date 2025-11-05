@@ -261,6 +261,7 @@ async function generateHTML() {
     console.log(`  - liveOverlay: ${data.liveOverlay ? '✓' : '✗'}`);
     console.log(`  - lesson: ${data.lesson ? '✓' : '✗'}`);
     console.log(`  - termsAndSupport: ${data.termsAndSupport ? data.termsAndSupport.length + ' items' : '✗'}`);
+    console.log('🔍 lesson data in templateData:', JSON.stringify(data.lesson, null, 2));
     console.log('');
 
     // テンプレートロード
