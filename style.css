@@ -1678,149 +1678,99 @@ footer {
 }
 
 /* ==========================================================
- * 13. GALLERYセクションのスタイル（改善版）
+ * 13. GALLERYセクションのスタイル（アコーディオン版）
  * ========================================================== */
 
 /* GALLERYセクション - 基本レイアウト */
 #gallery {
-    max-width: 100%;  /* 画面幅いっぱいに */
+    max-width: 100%;
     width: 100%;
     margin: 0 auto;
-    padding: 60px 0; /* 左右のpaddingを削除 */
+    padding: 60px 20px;
 }
 
-/* イントロテキスト */
-#gallery .gallery-intro-text {
-    max-width: 900px;
-    margin: 0 auto 40px;
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-/* ギャラリーグリッドコンテナ */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+/* ギャラリーアコーディオン */
+.gallery-accordion {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-/* ギャラリーアイテム */
-.gallery-item {
-    position: relative;
-    overflow: hidden;
+.gallery-event {
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(224, 180, 102, 0.3);
+    padding-bottom: 20px;
+}
+
+.gallery-event-title {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    color: #e0b466;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+    user-select: none;
+}
+
+.gallery-event-title:hover {
+    color: #f0c476;
+}
+
+.gallery-arrow {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s;
+    font-size: 16px;
+}
+
+.gallery-event-title.active .gallery-arrow {
+    transform: rotate(90deg);
+}
+
+.gallery-event-images {
+    display: none;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px 0;
+    gap: 15px;
+}
+
+.gallery-event-images.show {
+    display: flex;
+}
+
+.gallery-event-images img {
+    height: 250px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-event-images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(224, 180, 102, 0.4);
+}
+
+/* スクロールバーのスタイリング */
+.gallery-event-images::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gallery-event-images::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
-    cursor: pointer;
-    aspect-ratio: 1;
-    background-color: #111;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gallery-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 16px rgba(224, 180, 102, 0.4);
-    z-index: 1;
+.gallery-event-images::-webkit-scrollbar-thumb {
+    background: rgba(224, 180, 102, 0.5);
+    border-radius: 4px;
 }
 
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: filter 0.3s ease;
-}
-
-/* 特定の画像のトリミング位置を調整 */
-.gallery-item:nth-child(8) img {
-    object-position: center 30%;  /* 上寄りに調整 */
-}
-
-.gallery-item:nth-child(9) img {
-    object-position: center 30%;  /* 上寄りに調整 */
-}
-
-.gallery-item:hover img {
-    filter: brightness(1.1);
-}
-
-/* キャプション（ホバー時表示） */
-.gallery-caption {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 12px;
-    border-top-left-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    max-width: 80%;
-}
-
-.gallery-item:hover .gallery-caption {
-    opacity: 1;
-}
-
-
-/* ==========================================================
- * GALLERYセクション - グリッドレイアウト & モーダル
- * ========================================================== */
-
-/* ギャラリーグリッド */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* PC: 4列 */
-    gap: 20px 15px;
-    margin-top: 30px;
-    margin: 20px auto 0;  /* 中央揃え */
-    max-width: 1100px;  /* グリッド自体も最大幅を設定 */
-    padding: 0 20px;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px;  /* 8px → 4px に縮小 */
-    cursor: pointer;
-    aspect-ratio: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 250px;  /* 最大サイズを制限 */
-    margin: 0 auto;  /* 中央揃え */
-}
-
-.gallery-item:hover {
-    transform: scale(1.03);  /* 1.05 → 1.03 控えめに */
-    box-shadow: 0 4px 16px rgba(224, 180, 102, 0.4);  /* より控えめに */
-    z-index: 1;  /* ホバー時に前面に */
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* キャプション（ホバー時表示） */
-.gallery-caption {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 12px;
-    border-top-left-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    max-width: 80%;
-}
-
-.gallery-item:hover .gallery-caption {
-    opacity: 1;
+.gallery-event-images::-webkit-scrollbar-thumb:hover {
+    background: rgba(224, 180, 102, 0.7);
 }
 
 /* ギャラリーモーダル */
@@ -1905,39 +1855,18 @@ footer {
     right: 30px;
 }
 
-/* タブレット対応 (1024px以下) */
-@media (max-width: 1024px) {
-    #gallery {
-        padding: 50px 15px;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        max-width: 900px;
-    }
-}
-
-/* スマホ対応 (768px以下) */
+/* タブレット・スマホ対応 */
 @media (max-width: 768px) {
     #gallery {
-        padding: 40px 10px;
+        padding: 40px 15px;
     }
     
-    .gallery-intro-text {
-        font-size: 14px;
-        margin-bottom: 30px;
+    .gallery-event-title {
+        font-size: 18px;
     }
     
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        max-width: 100%; /* 100pxから修正 */
-        padding: 0 10px;
-    }
-    
-    .gallery-item {
-        border-radius: 3px;
+    .gallery-event-images img {
+        height: 180px;
     }
     
     /* モーダル調整 */
@@ -1977,16 +1906,13 @@ footer {
     }
 }
 
-
-/* 小型端末対応 (390px以下) さらに小型端末（iPhone SE など）*/
 @media (max-width: 390px) {
     #gallery {
-        padding: 30px 8px;
+        padding: 30px 10px;
     }
     
-    .gallery-grid {
-        gap: 6px;
-        padding: 0 8px;
+    .gallery-event-images img {
+        height: 150px;
     }
     
     .gallery-modal-prev,

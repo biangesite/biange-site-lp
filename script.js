@@ -425,39 +425,64 @@ window.addEventListener('load', function() {
 // ギャラリーモーダル機能
 // ==========================================================
 
-const galleryImages = [
-    { src: './images/gallery_portrait_001.jpg', caption: '2024年春 すみだトリフォニー公演より' },
-    { src: './images/gallery_portrait_002.jpg', caption: 'リハーサル風景' },
-    { src: './images/gallery_portrait_003.jpg', caption: 'ステージ演奏中' },
-    { src: './images/gallery_portrait_004.jpg', caption: 'アーティスト写真4' },
-    { src: './images/gallery_portrait_005.jpg', caption: 'アーティスト写真5' },
-    { src: './images/gallery_portrait_006.jpg', caption: 'アーティスト写真6' },
-    { src: './images/gallery_portrait_007.jpg', caption: 'アーティスト写真7' },
-    { src: './images/gallery_portrait_008.jpg', caption: 'アーティスト写真8' },
-    { src: './images/gallery_portrait_009.jpg', caption: 'アーティスト写真9' },
-    { src: './images/gallery_portrait_010.jpg', caption: 'アーティスト写真10' },
-    { src: './images/gallery_portrait_011.jpg', caption: 'アーティスト写真11' },
-    { src: './images/gallery_portrait_012.jpg', caption: 'アーティスト写真12' },
-    { src: './images/gallery_portrait_013.jpg', caption: 'アーティスト写真13' }
-];
+// ギャラリー画像配列（テンプレートから動的生成）
+let galleryImages = [];
 
+// ページ読み込み時にギャラリー画像を収集
+document.addEventListener('DOMContentLoaded', function() {
+    // すべてのギャラリーイベントから画像を収集
+    const allImages = document.querySelectorAll('.gallery-event-images img');
+    galleryImages = Array.from(allImages).map(img => ({
+        src: img.src,
+        caption: img.alt
+    }));
+    
+    // 画像クリックイベントを追加
+    allImages.forEach((img, index) => {
+        img.addEventListener('click', function() {
+            openGalleryModal(index);
+        });
+    });
+});
+
+// アコーディオンの開閉
+function toggleGalleryEvent(titleElement) {
+    const imagesContainer = titleElement.nextElementSibling;
+    const isActive = titleElement.classList.contains('active');
+    
+    // すべてのアコーディオンを閉じる
+    document.querySelectorAll('.gallery-event-title').forEach(title => {
+        title.classList.remove('active');
+    });
+    document.querySelectorAll('.gallery-event-images').forEach(images => {
+        images.classList.remove('show');
+    });
+    
+    // クリックされたアコーディオンを開く（既に開いていた場合は閉じる）
+    if (!isActive) {
+        titleElement.classList.add('active');
+        imagesContainer.classList.add('show');
+    }
+}
+
+// ギャラリーモーダルを開く
 let currentImageIndex = 0;
-
 function openGalleryModal(index) {
     currentImageIndex = index;
     const modal = document.getElementById('gallery-modal');
     const img = document.getElementById('gallery-modal-img');
     const caption = document.getElementById('gallery-modal-caption');
     
-    img.src = galleryImages[index].src;
-    caption.textContent = galleryImages[index].caption;
-    
-    modal.classList.add('show');
-    document.body.classList.add('no-scroll');
+    if (galleryImages[index]) {
+        img.src = galleryImages[index].src;
+        caption.textContent = galleryImages[index].caption;
+        modal.classList.add('show');
+        document.body.classList.add('no-scroll');
+    }
 }
 
+// ギャラリーモーダルを閉じる
 function closeGalleryModal(event) {
-    // 背景クリックまたは×ボタンクリック時のみ閉じる
     if (!event || event.target.id === 'gallery-modal' || event.target.classList.contains('gallery-modal-close')) {
         const modal = document.getElementById('gallery-modal');
         modal.classList.remove('show');
@@ -465,6 +490,7 @@ function closeGalleryModal(event) {
     }
 }
 
+// ギャラリー画像を切り替え
 function changeGalleryImage(direction) {
     currentImageIndex += direction;
     
@@ -478,15 +504,17 @@ function changeGalleryImage(direction) {
     const img = document.getElementById('gallery-modal-img');
     const caption = document.getElementById('gallery-modal-caption');
     
-    img.src = galleryImages[currentImageIndex].src;
-    caption.textContent = galleryImages[currentImageIndex].caption;
+    if (galleryImages[currentImageIndex]) {
+        img.src = galleryImages[currentImageIndex].src;
+        caption.textContent = galleryImages[currentImageIndex].caption;
+    }
 }
 
 // キーボード操作（矢印キー、ESC）
 document.addEventListener('keydown', function(e) {
     const modal = document.getElementById('gallery-modal');
     if (modal && modal.classList.contains('show')) {
-        e.preventDefault(); // キー操作時の画面スクロール防止
+        e.preventDefault();
         if (e.key === 'ArrowLeft') {
             changeGalleryImage(-1);
         } else if (e.key === 'ArrowRight') {
