@@ -1600,50 +1600,15 @@ footer {
     text-align: center;
 }
 
-.bio-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+.profile-detail {
     margin-bottom: 30px;
-}
-
-.bio-card {
-    flex: 1 1 calc(50% - 10px);
-    max-width: calc(50% - 10px);
-    padding: 20px;
-    background-color: rgba(224, 180, 102, 0.1);
-    border-left: 5px solid #e0b466;
+    line-height: 1.8;
     text-align: left;
-    position: relative;
-    overflow: hidden;
 }
 
-.bio-card h4 {
-    color: #fff;
-    font-size: 18px;
+.profile-detail p {
     margin-bottom: 10px;
-    text-align: left;
-}
-
-.bio-card p {
-    font-size: 14px;
-    line-height: 1.6;
     color: #ccc;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.bio-card .bio-year-label {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #e0b466;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 2px 5px;
-    border-radius: 3px;
 }
 
 .award-list {
@@ -2116,31 +2081,6 @@ body.no-scroll {
     .profile-container h3 {
         font-size: 20px;
         margin-top: 20px;
-    }
-
-    /* 経歴ハイライトボックス（モバイル対応：1列） */
-    .bio-cards-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .bio-card {
-        flex: 1 1 100%;
-        max-width: 100%;
-        padding-right: 70px;
-    }
-    
-    .bio-card h4 {
-        font-size: 16px;
-    }
-    
-    .bio-card p {
-        font-size: 13px;
-        margin-bottom: 5px;
-    }
-    
-    .bio-card .bio-year-label {
-        font-size: 11px;
     }
     
     .award-list {
