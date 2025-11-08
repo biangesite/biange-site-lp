@@ -672,6 +672,98 @@ header nav a.disabled-link:hover {
 }
 
 /* ==========================================================
+ * CONTACTフォーム - 送信メッセージ表示
+ * ========================================================== */
+
+/* メッセージコンテナ */
+.form-status-skeleton {
+    max-width: 500px;
+    margin: 20px auto 0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.6;
+    display: none; /* 初期は非表示 */
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* 成功メッセージ */
+.form-status-skeleton.success {
+    display: block;
+    background-color: rgba(76, 175, 80, 0.15);
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+}
+
+.form-status-skeleton.success::before {
+    content: "✓ ";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* エラーメッセージ */
+.form-status-skeleton.error {
+    display: block;
+    background-color: rgba(244, 67, 54, 0.15);
+    border: 2px solid #F44336;
+    color: #F44336;
+}
+
+.form-status-skeleton.error::before {
+    content: "✗ ";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 送信中メッセージ */
+.form-status-skeleton.sending {
+    display: block;
+    background-color: rgba(33, 150, 243, 0.15);
+    border: 2px solid #2196F3;
+    color: #2196F3;
+}
+
+.form-status-skeleton.sending::before {
+    content: "⏳ ";
+    font-size: 18px;
+}
+
+/* フェードインアニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ボタンの送信中スタイル */
+#submit-button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .form-status-skeleton {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form-status-skeleton {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
+/* ==========================================================
  * 6. オーバーレイ情報 (サイドNEWS、LIVE、BGM)
  * ========================================================== */
 

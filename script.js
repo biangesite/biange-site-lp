@@ -69,31 +69,83 @@ function toggleAccordion(detailId) {
 }
 
 // ==========================================================
-// 5. CONTACTフォームの送信処理
+// CONTACTフォーム送信処理（Web3Forms対応）
 // ==========================================================
-function handleFormSubmit(event) {
-    event.preventDefault();
-    
+
+document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form');
-    const statusMessage = document.getElementById('form-status-message');
     const submitButton = document.getElementById('submit-button');
+    const statusMessage = document.getElementById('form-status-message');
+    
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // デフォルトの送信を防ぐ
+            
+            // 送信中の状態に
+            submitButton.disabled = true;
+            submitButton.textContent = '送信中...';
+            showMessage('sending', 'メッセージを送信しています...');
+            
+            // フォームデータを取得
+            const formData = new FormData(form);
+            
+            try {
+                // Web3Forms APIに送信
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // 送信成功
+                    showMessage('success', 'メッセージを送信しました！ご連絡ありがとうございます。');
+                    form.reset(); // フォームをリセット
+                    
+                    // 5秒後にメッセージを非表示
+                    setTimeout(() => {
+                        hideMessage();
+                    }, 5000);
+                    
+                } else {
+                    // 送信失敗
+                    showMessage('error', '送信に失敗しました。もう一度お試しください。');
+                    console.error('Form submission error:', data);
+                }
+                
+            } catch (error) {
+                // ネットワークエラー等
+                showMessage('error', '送信中にエラーが発生しました。インターネット接続を確認してください。');
+                console.error('Network error:', error);
+            } finally {
+                // ボタンを元に戻す
+                submitButton.disabled = false;
+                submitButton.textContent = '送信';
+            }
+        });
+    }
+});
 
-    // フォームを無効化
-    submitButton.disabled = true;
-    submitButton.textContent = '送信中...';
-    statusMessage.textContent = 'メッセージを送信しています。しばらくお待ちください...';
-    statusMessage.style.color = '#fff';
+// メッセージ表示関数
+function showMessage(type, message) {
+    const statusMessage = document.getElementById('form-status-message');
+    
+    // 既存のクラスを削除
+    statusMessage.className = 'form-status-skeleton';
+    
+    // 新しいクラスを追加
+    statusMessage.classList.add(type);
+    
+    // メッセージを設定
+    statusMessage.textContent = message;
+}
 
-    // 模擬的な送信遅延（3秒後）
-    setTimeout(() => {
-        statusMessage.textContent = 'お問い合わせありがとうございます！3営業日以内に返信いたします。';
-        statusMessage.style.color = '#e0b466'; 
-        
-        form.reset();
-        
-        submitButton.disabled = false;
-        submitButton.textContent = '送信';
-    }, 3000); 
+// メッセージ非表示関数
+function hideMessage() {
+    const statusMessage = document.getElementById('form-status-message');
+    statusMessage.className = 'form-status-skeleton';
+    statusMessage.textContent = '';
 }
 
 // ==========================================================

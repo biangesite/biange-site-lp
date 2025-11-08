@@ -260,36 +260,46 @@
 </section>
 
         <section id="contact" class="content-section" data-aos="fade-up">
-            <h2>CONTACT</h2>
-            <p class="contact-intro">ご質問、お仕事のご依頼はこちらから。</p>
-
-            <form id="contact-form" class="contact-form-skeleton" onsubmit="handleFormSubmit(event)">
-                <label for="contact-type">お問い合わせ種別</label>
-                <select id="contact-type" name="type" required>
-                    <option value="">-- 選択してください --</option>
-                    <option value="lesson">レッスン・体験レッスンについて</option>
-                    <option value="job">お仕事（演奏依頼・メディア出演など）</option>
-                    <option value="other">その他のお問い合わせ</option>
-                </select>
-
-                <label for="contact-name">お名前</label>
-                <input type="text" id="contact-name" name="name" required>
-
-                <label for="contact-email">メールアドレス</label>
-                <input type="email" id="contact-email" name="email" required>
-
-                <label for="contact-message">メッセージ</label>
-                <textarea id="contact-message" name="message" rows="5" required></textarea>
-
-                <p class="response-note">
-                    ライブイベントや出演スケジュールの都合で、返信に時間がかかる場合がございます。ご了承ください。
-                </p>
-
-                <button type="submit" id="submit-button">送信</button>
-            </form>
-            
-            <div id="form-status-message" class="form-status-skeleton"></div>
-        </section>
+    <h2>CONTACT</h2>
+    <p class="contact-intro">ご質問、お仕事のご依頼はこちらから。</p>
+    
+    <form id="contact-form" class="contact-form-skeleton" action="https://api.web3forms.com/submit" method="POST">
+        
+        <!-- Web3Forms Access Key（必須） -->
+        <input type="hidden" name="access_key" value="e8f03e8e-387e-491f-944c-cc9d472db43b">
+        
+        <!-- 送信先メールアドレス（オプション、念のため） -->
+        <input type="hidden" name="email" value="biange1007@hotmail.com">
+        
+        <!-- リダイレクト設定（送信後の画面遷移） -->
+        <input type="hidden" name="redirect" value="false">
+        
+        <label for="contact-type">お問い合わせ種別</label>
+        <select id="contact-type" name="type" required>
+            <option value="">-- 選択してください --</option>
+            <option value="lesson">レッスン・体験レッスンについて</option>
+            <option value="job">お仕事（演奏依頼・メディア出演など）</option>
+            <option value="other">その他のお問い合わせ</option>
+        </select>
+        
+        <label for="contact-name">お名前</label>
+        <input type="text" id="contact-name" name="name" required>
+        
+        <label for="contact-email">メールアドレス</label>
+        <input type="email" id="contact-email" name="from_email" required>
+        
+        <label for="contact-message">メッセージ</label>
+        <textarea id="contact-message" name="message" rows="5" required></textarea>
+        
+        <p class="response-note">
+            ライブイベントや出演スケジュールの都合で、返信に時間がかかる場合がございます。ご了承ください。
+        </p>
+        
+        <button type="submit" id="submit-button">送信</button>
+    </form>
+    
+    <div id="form-status-message" class="form-status-skeleton"></div>
+</section>
 
 <section id="gallery" class="content-section" data-aos="fade-up">
     <h2>GALLERY</h2>
