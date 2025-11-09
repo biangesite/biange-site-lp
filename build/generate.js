@@ -288,6 +288,13 @@ async function generateHTML() {
     console.log(`✅ HTML generated: ${outputPath}`);
     console.log(`📄 File size: ${(html.length / 1024).toFixed(2)} KB`);
     console.log('🚀 Ready for deployment');
+
+    // CNAME ファイルを生成（カスタムドメイン用）
+    const cnameContent = 'www.biange.jp\n';
+    const cnamePath = path.join(__dirname, '..', 'CNAME');
+    fs.writeFileSync(cnamePath, cnameContent, 'utf8');
+    console.log('✅ CNAME file generated:', cnamePath);
+
     console.log('');
   } catch (error) {
     console.error('');
