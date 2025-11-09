@@ -409,7 +409,7 @@ header nav a.disabled-link:hover {
 }
 
 .setlist-section h4 {
-    color: rgba(224, 180, 102, 0.7);
+    color: rgba(224, 180, 102, 1);
     margin-bottom: 6px;
     font-size: 12px;
     font-weight: 500;  /* 太さも控えめに */
@@ -417,7 +417,7 @@ header nav a.disabled-link:hover {
 }
 
 .setlist-section p {
-    color: rgba(255, 255, 255, 0.6);  /* より控えめな白 */
+    color: rgba(255, 255, 255, 0.9);  /* より控えめな白 */
     line-height: 1.8;
     font-size: 12px;
     text-align: center;
