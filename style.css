@@ -12,6 +12,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;  /* ← 追加
     overflow-y: scroll;  /* 追加 */
     scrollbar-width: none;  /* 追加 */
     -ms-overflow-style: none;  /* 追加 */
