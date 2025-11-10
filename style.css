@@ -1178,6 +1178,117 @@ header nav a.disabled-link:hover {
 }
 
 /* ==========================================================
+ * SNSリンク（左側固定・スライドラベル付き）
+ * ========================================================== */
+.sns-links {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100;
+}
+
+.sns-links a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #e0b466;
+    font-size: 20px;
+    text-decoration: none;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.sns-links a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.sns-links a .sns-label {
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 15px;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 1.0s cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+    color: #e0b466;
+}
+
+/* ホバー時：楕円形が右にスライド */
+.sns-links a:hover {
+    width: 140px;
+    background-color: rgba(224, 180, 102, 0.3);
+    color: #f0c476;
+}
+
+.sns-links a:hover .sns-label {
+    opacity: 1;
+    color: #f0c476;
+}
+
+/* YouTube 個別カラー */
+.sns-links a:hover:has(.fa-youtube) {
+    background-color: rgba(255, 0, 0, 0.25);
+}
+
+/* Instagram 個別カラー */
+.sns-links a:hover:has(.fa-instagram) {
+    background: linear-gradient(45deg, rgba(225, 48, 108, 0.25), rgba(193, 53, 132, 0.25));
+}
+
+/* Facebook 個別カラー */
+.sns-links a:hover:has(.fa-facebook) {
+    background-color: rgba(24, 119, 242, 0.25);
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .sns-links {
+        left: 10px;
+        gap: 12px;
+    }
+    
+    .sns-links a {
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;
+        font-size: 14px;
+    }
+    
+    .sns-links a i {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .sns-links a:hover {
+        width: 120px;
+    }
+    
+    .sns-links a .sns-label {
+        font-size: 12px;
+        padding-right: 12px;
+    }
+}
+
+/* ==========================================================
  * 8. フッター
  * ========================================================== */
 footer {
