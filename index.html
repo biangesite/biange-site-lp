@@ -145,7 +145,7 @@
             
             <!-- ライブ詳細情報 -->
             <div class="live-featured-content">
-                <a href="#contact" class="ticket-badge-link">
+                <a href="#contact" class="ticket-badge-link" data-contact-type="ticket">
                 <span class="ticket-badge ticket-badge--前売り">
                 🔵予約受付中😊
                 </span>
@@ -366,6 +366,7 @@
         <label for="contact-type">お問い合わせ種別</label>
         <select id="contact-type" name="type" required>
             <option value="">-- 選択してください --</option>
+            <option value="ticket">チケット予約</option>
             <option value="lesson">レッスン・体験レッスンについて</option>
             <option value="job">お仕事（演奏依頼・メディア出演など）</option>
             <option value="other">その他のお問い合わせ</option>
