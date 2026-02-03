@@ -144,7 +144,8 @@ Handlebars.registerHelper('applyStyle', function(styleName, type) {
     }
   };
   
-  return styles[type] && styles[type][styleName] ? styles[type][styleName] : '';
+  const result = styles[type] && styles[type][styleName] ? styles[type][styleName] : '';
+  return result || null;  // 空文字列の場合はnullを返す
 });
 
 // チケットステータスのバッジクラスを返す
