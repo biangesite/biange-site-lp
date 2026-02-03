@@ -575,4 +575,84 @@ document.addEventListener('keydown', function(e) {
             closeGalleryModal();
         }
     }
+})
+
+// ページ読み込み時とチケットバッジクリック時の処理
+document.addEventListener('DOMContentLoaded', function() {
+    const contactTypeSelect = document.getElementById('contact-type');
+    
+    // セッションストレージを使用（タブを閉じるまで有効）
+    const TICKET_FLAG_KEY = 'autoSelectTicket';
+    
+    // ページ読み込み時に自動選択をチェック
+    function checkAndAutoSelectTicket() {
+        const shouldAutoSelect = sessionStorage.getItem(TICKET_FLAG_KEY);
+        
+        if (shouldAutoSelect === 'true' && contactTypeSelect) {
+            contactTypeSelect.value = 'ticket';
+        }
+        
+        // 使用後はすぐにクリア
+        sessionStorage.removeItem(TICKET_FLAG_KEY);
+    }
+    
+    // ページ読み込み時に実行
+    checkAndAutoSelectTicket();
+    
+    // チケットバッジクリック時の処理
+    const ticketBadgeLinks = document.querySelectorAll('.ticket-badge-link');
+    ticketBadgeLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const contactType = this.getAttribute('data-contact-type');
+            if (contactType === 'ticket') {
+                // セッションストレージにフラグを設定
+                sessionStorage.setItem(TICKET_FLAG_KEY, 'true');
+                
+                // CONTACTセクションに遷移
+                window.location.hash = 'contact';
+                
+                // 少し遅延させて自動選択
+                setTimeout(() => {
+                    if (contactTypeSelect) {
+                        contactTypeSelect.value = 'ticket';
+                    }
+                    // CONTACTセクションにスムーズスクロール
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    // 自動選択後、フラグをクリア
+                    sessionStorage.removeItem(TICKET_FLAG_KEY);
+                }, 100);
+            }
+        });
+    });
+    
+    // メインメニューのCONTACTリンククリック時の処理
+    const contactNavLinks = document.querySelectorAll('a[href="#contact"]');
+    contactNavLinks.forEach(link => {
+        // チケットバッジ以外のCONTACTリンク
+        if (!link.classList.contains('ticket-badge-link')) {
+            link.addEventListener('click', function() {
+                // フラグをクリア（自動選択させない）
+                sessionStorage.removeItem(TICKET_FLAG_KEY);
+                
+                // 少し遅延させてリセット
+                setTimeout(() => {
+                    if (contactTypeSelect) {
+                        contactTypeSelect.value = '';
+                    }
+                }, 100);
+            });
+        }
+    });
+    
+    // ページ読み込み完了後、CONTACTセクション以外に遷移したらフラグをクリア
+    window.addEventListener('hashchange', function() {
+        if (window.location.hash !== '#contact') {
+            sessionStorage.removeItem(TICKET_FLAG_KEY);
+        }
+    });
 });
