@@ -100,9 +100,11 @@
             
             <!-- ライブ詳細情報 -->
             <div class="live-featured-content">
+                <a href="#contact" class="ticket-badge-link">
                 <span class="ticket-badge {{ticketBadgeClass latestLive.ticketStatus}}">
-                    {{#if (isArray latestLive.ticketStatus)}}{{firstItem latestLive.ticketStatus}}{{else}}{{latestLive.ticketStatus}}{{/if}}
+                {{#if (isArray latestLive.ticketStatus)}}{{firstItem latestLive.ticketStatus}}{{else}}{{latestLive.ticketStatus}}{{/if}}
                 </span>
+                </a>
                 <h3>{{formatDate latestLive.liveEventsDate}}　{{latestLive.liveEventsTitle}}</h3>
                 <p>{{latestLive.venue}}</p>
                 <p>開場 {{latestLive.openTime}} / 開演 {{latestLive.startTime}}</p>
