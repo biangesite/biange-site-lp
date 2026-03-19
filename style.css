@@ -633,6 +633,31 @@ header nav a.disabled-link:hover {
     max-width: 500px;
 }
 
+/* CONTACTフォーム注意書き */
+.contact-notice {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #FFC107;
+    padding: 20px;
+    margin: 20px auto 30px;
+    max-width: 700px;
+    border-radius: 4px;
+}
+
+.contact-notice h4 {
+    color: #FFC107;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.contact-notice p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
 .contact-form-skeleton {
     display: flex;
     flex-direction: column;
